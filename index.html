@@ -59,6 +59,10 @@
       </figure>
     </div>
 
+    <!-- ---------- Jump straight to a league or the full ranking ---------- -->
+    <!-- Built by renderLeagueTiles() in main.js -->
+    <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-4" id="league-tiles"></div>
+
     <!-- ---------- Welcome / about the project ---------- -->
     <div class="intro-card mt-11 reveal hero-in">
       <p class="eyebrow">Welcome <span class="dot">·</span> About</p>
@@ -106,14 +110,6 @@
       </div>
     </div>
   </header>
-
-  <!-- =================================================== LEAGUE TILES ===== -->
-  <!-- Sits directly under the hero: jump straight into a league or the full
-       ranking without scrolling. -->
-  <section class="shell" style="padding-block:clamp(8px,2vw,20px) 0">
-    <!-- Built by renderLeagueTiles() in main.js -->
-    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4" id="league-tiles"></div>
-  </section>
 
   <!-- ================================================ TABLE 1: OVERVIEW === -->
   <section id="overview" class="shell" style="padding-block:clamp(48px,7vw,80px) 0">

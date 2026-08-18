@@ -102,6 +102,23 @@ short "ratings are in, the write-up isn't" note instead of four empty headings.
 
 You never type an overall score — `overallScore()` in `main.js` calculates it.
 
+### The game you attended
+
+Each stadium carries the game that was actually seen there. It's printed under
+the team and city on every ranking card, and under the header on the detail page:
+
+```js
+game: {
+  date: "Nov 25, 2021",
+  status: "Final/OT",                        // "Final/OT" adds "(OT)" to the line
+  away: { team: "Raiders",  score: 36 },
+  home: { team: "Cowboys",  score: 33 },
+},
+```
+
+renders as **Nov 25, 2021 · Raiders 36 – Cowboys 33 (OT)**. Leave `game` off
+entirely and the line simply doesn't appear.
+
 ### One entry per gameday, not per building
 
 A stadium shared by two teams is scored twice, because a Jets game and a Giants

@@ -24,6 +24,10 @@
    ratings   atmosphere / stadium / uniqueness / gameplay, each 0–10
    review    { overview, liked[], disliked[], verdict }
    info      { capacity, opened, city, surface, roof }
+   game      the game I actually attended:
+             { date, status, away: { team, score }, home: { team, score } }
+             Shown under the team and city everywhere the stadium is listed.
+             Leave it off and the line simply doesn't appear.
    brand     { abbr, primary, secondary } — used to draw the team logo badge
    logo      OPTIONAL path to a real logo image, e.g. "assets/logos/gb.svg".
              If present it is used instead of the generated badge.
@@ -69,6 +73,9 @@ const STADIUMS = [
       verdict: "",
     },
     info: { capacity: "80,000", opened: 2009, city: "Arlington, TX", surface: "Artificial turf", roof: "Retractable" },
+    game: { date: "Nov 25, 2021", status: "Final/OT",
+             away: { team: "Raiders", score: 36 },
+             home: { team: "Cowboys", score: 33 } },
   },
   {
     id: "levis-stadium",
@@ -85,6 +92,9 @@ const STADIUMS = [
       verdict: "",
     },
     info: { capacity: "68,500", opened: 2014, city: "Santa Clara, CA", surface: "Natural grass", roof: "Open air" },
+    game: { date: "Nov 9, 2025", status: "Final",
+             away: { team: "Rams", score: 42 },
+             home: { team: "49ers", score: 26 } },
   },
   {
     id: "sofi-stadium",
@@ -101,6 +111,9 @@ const STADIUMS = [
       verdict: "",
     },
     info: { capacity: "70,240", opened: 2020, city: "Inglewood, CA", surface: "Artificial turf", roof: "Fixed canopy, open sides" },
+    game: { date: "Nov 13, 2022", status: "Final",
+             away: { team: "Cardinals", score: 27 },
+             home: { team: "Rams", score: 17 } },
   },
   {
     id: "gillette-stadium",
@@ -117,6 +130,9 @@ const STADIUMS = [
       verdict: "",
     },
     info: { capacity: "64,628", opened: 2002, city: "Foxborough, MA", surface: "Artificial turf", roof: "Open air" },
+    game: { date: "Oct 27, 2024", status: "Final",
+             away: { team: "Jets", score: 22 },
+             home: { team: "Patriots", score: 25 } },
   },
   {
     id: "state-farm-stadium",
@@ -133,6 +149,9 @@ const STADIUMS = [
       verdict: "",
     },
     info: { capacity: "63,400", opened: 2006, city: "Glendale, AZ", surface: "Natural grass (roll-out)", roof: "Retractable" },
+    game: { date: "Nov 10, 2024", status: "Final",
+             away: { team: "Jets", score: 6 },
+             home: { team: "Cardinals", score: 31 } },
   },
   {
     id: "mt-bank-stadium",
@@ -149,6 +168,9 @@ const STADIUMS = [
       verdict: "",
     },
     info: { capacity: "71,008", opened: 1998, city: "Baltimore, MD", surface: "Natural grass", roof: "Open air" },
+    game: { date: "Oct 5, 2025", status: "Final",
+             away: { team: "Texans", score: 44 },
+             home: { team: "Ravens", score: 10 } },
   },
   {
     id: "metlife-stadium-jets",
@@ -165,6 +187,9 @@ const STADIUMS = [
       verdict: "",
     },
     info: { capacity: "82,500", opened: 2010, city: "East Rutherford, NJ", surface: "Artificial turf", roof: "Open air" },
+    game: { date: "Nov 24, 2023", status: "Final",
+             away: { team: "Dolphins", score: 34 },
+             home: { team: "Jets", score: 13 } },
   },
   {
     id: "metlife-stadium-giants",
@@ -181,6 +206,9 @@ const STADIUMS = [
       verdict: "",
     },
     info: { capacity: "82,500", opened: 2010, city: "East Rutherford, NJ", surface: "Artificial turf", roof: "Open air" },
+    game: { date: "Oct 17, 2021", status: "Final",
+             away: { team: "Rams", score: 38 },
+             home: { team: "Giants", score: 11 } },
   },
 
   /* --- Booked, not yet visited. No ratings until I've actually been. -------
@@ -231,6 +259,9 @@ const STADIUMS = [
       verdict: "",
     },
     info: { capacity: "42,901", opened: 2004, city: "Philadelphia, PA", surface: "Natural grass", roof: "Open air" },
+    game: { date: "Jun 7, 2026", status: "Final",
+             away: { team: "White Sox", score: 5 },
+             home: { team: "Phillies", score: 9 } },
   },
   {
     id: "yankee-stadium",
@@ -247,6 +278,9 @@ const STADIUMS = [
       verdict: "",
     },
     info: { capacity: "46,537", opened: 2009, city: "Bronx, NY", surface: "Natural grass", roof: "Open air" },
+    game: { date: "Mar 30, 2025", status: "Final",
+             away: { team: "Brewers", score: 3 },
+             home: { team: "Yankees", score: 12 } },
   },
   {
     id: "citi-field",
@@ -263,6 +297,9 @@ const STADIUMS = [
       verdict: "",
     },
     info: { capacity: "41,922", opened: 2009, city: "Queens, NY", surface: "Natural grass", roof: "Open air" },
+    game: { date: "May 25, 2025", status: "Final",
+             away: { team: "TBC", score: 1 },
+             home: { team: "Mets", score: 3 } },
   },
 
   /* ------------------------------------------------------------------ NBA --
@@ -283,6 +320,9 @@ const STADIUMS = [
       verdict: "",
     },
     info: { capacity: "19,812", opened: 1968, city: "New York, NY", surface: "Hardwood", roof: "Indoor" },
+    game: { date: "Jan 15, 2024", status: "Final",
+             away: { team: "Magic", score: 98 },
+             home: { team: "Knicks", score: 94 } },
   },
   {
     id: "barclays-center",
@@ -299,6 +339,9 @@ const STADIUMS = [
       verdict: "",
     },
     info: { capacity: "17,732", opened: 2012, city: "Brooklyn, NY", surface: "Hardwood", roof: "Indoor" },
+    game: { date: "Jan 9, 2026", status: "Final",
+             away: { team: "Clippers", score: 121 },
+             home: { team: "Nets", score: 105 } },
   },
   {
     id: "footprint-center",
@@ -315,6 +358,9 @@ const STADIUMS = [
       verdict: "",
     },
     info: { capacity: "17,071", opened: 1992, city: "Phoenix, AZ", surface: "Hardwood", roof: "Indoor" },
+    game: { date: "Nov 10, 2024", status: "Final/OT",
+             away: { team: "Kings", score: 127 },
+             home: { team: "Suns", score: 118 } },
   },
 ];
 

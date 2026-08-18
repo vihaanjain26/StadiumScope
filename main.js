@@ -115,6 +115,16 @@ function esc(str) {
   ));
 }
 
+/* The game I actually attended, as one short line:
+   "Nov 25, 2021 · Raiders 36 – Cowboys 33 (OT)".
+   Returns "" for a stadium with no `game`, so the line just disappears. */
+function gameLine(stadium) {
+  const g = stadium.game;
+  if (!g) return "";
+  const ot = /OT/i.test(g.status || "") ? " (OT)" : "";
+  return `${g.date} · ${g.away.team} ${g.away.score} – ${g.home.team} ${g.home.score}${ot}`;
+}
+
 /* ========================================================= 2. LOGO BADGE === */
 
 /* Draws the team mark that sits next to every stadium name.
@@ -158,6 +168,7 @@ function renderRankingList(container, list) {
             <span class="block text-sm mt-1" style="color:var(--ink-soft)">
               ${esc(stadium.team)} &nbsp;·&nbsp; ${esc(stadium.info.city)}
             </span>
+            ${gameLine(stadium) ? `<span class="scoreline mt-1.5">${esc(gameLine(stadium))}</span>` : ""}
           </span>
         </span>
 
@@ -407,6 +418,9 @@ function renderStadiumPage() {
           </div>
           <h1 class="display mt-6">${esc(stadium.name)}</h1>
           <p class="lede mt-4">${esc(stadium.team)} &nbsp;·&nbsp; ${esc(stadium.info.city)}</p>
+          ${gameLine(stadium) ? `
+            <p class="eyebrow mt-6">Game attended</p>
+            <p class="scoreline scoreline-lg mt-2">${esc(gameLine(stadium))}</p>` : ""}
         </div>
 
         <div class="lg:text-right shrink-0">

@@ -225,6 +225,16 @@ a { color: inherit; text-decoration: none; }
 .rank-card:hover .rank-num { color: var(--ink); }
 .rank-card:hover .score-big { color: var(--accent); }
 
+/* On a phone the extra scoreline makes the row tight, so buy back space:
+   smaller badge, tighter gaps, and drop the "Overall" label under the score
+   (the big number doesn't need labelling). */
+@media (max-width: 520px) {
+  .rank-card { gap: 12px; padding: 18px 2px; }
+  .rank-card .logo-md { width: 34px; height: 34px; font-size: 11px; border-radius: 8px; }
+  .rank-card .eyebrow { display: none; }
+  .scoreline { font-size: 11px; }
+}
+
 .score-big {
   font-weight: 800;
   font-variant-numeric: tabular-nums;
@@ -233,6 +243,18 @@ a { color: inherit; text-decoration: none; }
   line-height: 1;
   transition: color 0.3s ease;
 }
+
+/* The game actually attended, sitting under the team and city. Kept small,
+   monospaced-feeling and tabular so the scores line up down a ranking list. */
+.scoreline {
+  display: block;
+  font-size: 12px;
+  font-weight: 550;
+  letter-spacing: 0.01em;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-faint);
+}
+.scoreline-lg { font-size: 15px; font-weight: 650; color: var(--ink); }
 
 /* --------------------------------------------------------------- 9. TABLES */
 .table-wrap {

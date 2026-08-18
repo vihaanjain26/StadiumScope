@@ -461,6 +461,20 @@ table.data tr.row-total td {
               border-color 0.3s ease;
 }
 .tile:hover { transform: translateY(-6px); border-color: var(--ink); }
+
+/* Smaller variant — four of these sit in a row near the top of the home page,
+   so they carry less padding and a tighter title than the full-size tile. */
+.tile-compact { padding: 20px 18px 18px; border-radius: 12px; }
+.tile-title {
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  font-size: clamp(1.5rem, 2.6vw, 1.9rem);
+  line-height: 1;
+}
+/* The master-ranking tile, marked out from the three league tiles. */
+.tile-accent { border-color: color-mix(in srgb, var(--accent) 35%, var(--rule)); }
+.tile-accent .tile-title { color: var(--accent); }
+.tile-accent:hover { border-color: var(--accent); }
 .tile:hover .tile-arrow { transform: translateX(5px); color: var(--accent); }
 .tile-arrow { display: inline-block; transition: transform 0.3s ease, color 0.3s ease; }
 

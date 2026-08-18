@@ -628,28 +628,61 @@ function renderUpcoming(container, league) {
 }
 
 /* ---- 3h. Home page league tiles ----------------------------------------- */
-function renderLeagueTiles(container) {
+/* `includeAll` adds a fourth tile linking to the master ranking. The rankings
+   page itself passes false — it would only link back to itself. */
+function renderLeagueTiles(container, includeAll = false) {
   if (!container) return;
-  container.innerHTML = LEAGUES.map((league) => {
+
+  const leagueTiles = LEAGUES.map((league) => {
     const s = leagueSummary(league);
     return `
-      <a class="tile reveal" href="${league.toLowerCase()}.html">
+      <a class="tile tile-compact reveal" href="${league.toLowerCase()}.html">
         <div class="flex items-start justify-between">
-          <span class="h2" style="letter-spacing:-0.05em">${league}</span>
-          <span class="tile-arrow text-2xl" style="color:var(--ink-faint)">→</span>
+          <span class="tile-title">${league}</span>
+          <span class="tile-arrow text-xl" style="color:var(--ink-faint)">→</span>
         </div>
-        <p class="text-sm mt-2" style="color:var(--ink-soft)">
+        <p class="text-sm mt-1.5" style="color:var(--ink-soft)">
           ${s.count} venues · avg ${fmtScore(s.average)}
         </p>
-        <div class="mt-6 pt-5" style="border-top:1px solid var(--rule)">
+        <div class="mt-4 pt-4" style="border-top:1px solid var(--rule)">
           <span class="eyebrow">Number one</span>
-          <span class="flex items-center gap-3 mt-2.5">
+          <span class="flex items-center gap-2.5 mt-2">
             ${makeLogo(s.best, "sm")}
-            <span class="font-semibold">${esc(s.best.name)}</span>
+            <span class="font-semibold text-sm">${esc(s.best.name)}</span>
           </span>
         </div>
       </a>`;
-  }).join("");
+  });
+
+  if (!includeAll) {
+    container.innerHTML = leagueTiles.join("");
+    return;
+  }
+
+  /* A fourth tile alongside the three leagues, pointing at the master ranking. */
+  const rated = RATED();
+  const average = rated.reduce((sum, st) => sum + rawScore(st), 0) / rated.length;
+  const best = sortedByScore(rated)[0];
+
+  leagueTiles.push(`
+      <a class="tile tile-compact tile-accent reveal" href="rankings.html">
+        <div class="flex items-start justify-between">
+          <span class="tile-title">All</span>
+          <span class="tile-arrow text-xl" style="color:var(--accent)">→</span>
+        </div>
+        <p class="text-sm mt-1.5" style="color:var(--ink-soft)">
+          ${rated.length} venues · avg ${fmtScore(average)}
+        </p>
+        <div class="mt-4 pt-4" style="border-top:1px solid var(--rule)">
+          <span class="eyebrow">The master ranking</span>
+          <span class="flex items-center gap-2.5 mt-2">
+            ${makeLogo(best, "sm")}
+            <span class="font-semibold text-sm">${esc(best.name)}</span>
+          </span>
+        </div>
+      </a>`);
+
+  container.innerHTML = leagueTiles.join("");
 }
 
 /* ========================================================== 4. ANIMATION === */
@@ -724,7 +757,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (page === "home") {
     renderOverviewTable(document.getElementById("overview-table"));
-    renderLeagueTiles(document.getElementById("league-tiles"));
+    renderLeagueTiles(document.getElementById("league-tiles"), true);
     /* Top five overall, as a teaser list on the home page. */
     renderRankingList(
       document.getElementById("ranking-list"),

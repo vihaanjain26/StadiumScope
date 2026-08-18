@@ -107,6 +107,14 @@
     </div>
   </header>
 
+  <!-- =================================================== LEAGUE TILES ===== -->
+  <!-- Sits directly under the hero: jump straight into a league or the full
+       ranking without scrolling. -->
+  <section class="shell" style="padding-block:clamp(8px,2vw,20px) 0">
+    <!-- Built by renderLeagueTiles() in main.js -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4" id="league-tiles"></div>
+  </section>
+
   <!-- ================================================ TABLE 1: OVERVIEW === -->
   <section id="overview" class="shell" style="padding-block:clamp(48px,7vw,80px) 0">
     <div class="section-head reveal">
@@ -143,18 +151,6 @@
 
     <!-- Built by renderRankingList(); .ranking-list makes GSAP stagger the rows -->
     <div class="mt-8 ranking-list" id="ranking-list"></div>
-  </section>
-
-  <!-- =================================================== LEAGUE TILES ===== -->
-  <section class="shell" style="padding-block:clamp(64px,9vw,110px) 0">
-    <div class="section-head reveal">
-      <div>
-        <p class="eyebrow">By league</p>
-        <h2 class="h2 mt-3">Pick a sport</h2>
-      </div>
-    </div>
-    <!-- Built by renderLeagueTiles() in main.js -->
-    <div class="mt-9 grid sm:grid-cols-2 lg:grid-cols-3 gap-5" id="league-tiles"></div>
   </section>
 
   <!-- ==================================================== METHODOLOGY ===== -->

@@ -27,6 +27,7 @@
       <a href="index.html" class="brand"><span class="brand-mark"></span> Stadium Scope</a>
       <div class="nav-links">
         <a class="nav-link is-active" href="index.html">Home</a>
+        <a class="nav-link" href="rankings.html">Rankings</a>
         <a class="nav-link" href="nfl.html">NFL</a>
         <a class="nav-link" href="mlb.html">MLB</a>
         <a class="nav-link" href="nba.html">NBA</a>
@@ -86,7 +87,7 @@
         decimals. No sponsors, no rounding up for a famous name.
       </p>
       <div class="flex flex-wrap gap-3 reveal hero-in">
-        <a class="btn btn-accent" href="#master">See the full ranking</a>
+        <a class="btn btn-accent" href="rankings.html">See the full ranking</a>
         <a class="btn" href="#overview">How it works</a>
       </div>
     </div>
@@ -122,33 +123,12 @@
       </div>
       <p class="lede lg:max-w-md lg:text-right">
         The five best gamedays across all three leagues. Tap any row for the full
-        review, the category breakdown and the details.
+        review, or see <a class="link-u" href="rankings.html">the whole ranking</a>.
       </p>
     </div>
 
     <!-- Built by renderRankingList(); .ranking-list makes GSAP stagger the rows -->
     <div class="mt-8 ranking-list" id="ranking-list"></div>
-  </section>
-
-  <!-- ================================================= TABLE 2: MASTER ==== -->
-  <section id="master" class="shell" style="padding-block:clamp(64px,9vw,110px) 0">
-    <div class="section-head reveal">
-      <div>
-        <p class="eyebrow">Table 02</p>
-        <h2 class="h2 mt-3">The master<br>ranking</h2>
-      </div>
-      <p class="lede lg:max-w-md lg:text-right">
-        Every scored venue from all three leagues in one list, sorted by overall
-        score with every category shown. Scroll sideways on a phone.
-      </p>
-    </div>
-
-    <!-- Built by renderMasterTable() in main.js -->
-    <div class="table-wrap mt-9 reveal" id="master-table"></div>
-    <p class="table-note reveal">
-      Atmo = atmosphere · Stad = the stadium itself · Uniq = uniqueness · Game = gameplay.
-      Overall is the average of the four, rounded to two decimals.
-    </p>
   </section>
 
   <!-- =================================================== LEAGUE TILES ===== -->
@@ -214,6 +194,7 @@
         </p>
       </div>
       <div class="flex gap-8 text-sm" style="color:var(--ink-soft)">
+        <a class="link-u" href="rankings.html">Rankings</a>
         <a class="link-u" href="nfl.html">NFL</a>
         <a class="link-u" href="mlb.html">MLB</a>
         <a class="link-u" href="nba.html">NBA</a>

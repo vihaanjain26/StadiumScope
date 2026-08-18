@@ -27,7 +27,8 @@ readable; you just lose the animations and some spacing polish.
 ## The files
 
 ```
-index.html          Home: overview table, top five, master ranking, method
+index.html          Home: welcome, overview table, top five, method
+rankings.html       The master ranking — every venue, all leagues, one table
 nfl.html            NFL ranking + NFL venues table
 mlb.html            MLB ranking + MLB venues table
 nba.html            NBA ranking + NBA venues table

@@ -724,13 +724,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (page === "home") {
     renderOverviewTable(document.getElementById("overview-table"));
-    renderMasterTable(document.getElementById("master-table"));
     renderLeagueTiles(document.getElementById("league-tiles"));
     /* Top five overall, as a teaser list on the home page. */
     renderRankingList(
       document.getElementById("ranking-list"),
       sortedByScore(RATED()).slice(0, 5)
     );
+  }
+
+  /* rankings.html — the master table on its own page. */
+  if (page === "rankings") {
+    renderMasterTable(document.getElementById("master-table"));
+    renderLeagueTiles(document.getElementById("league-tiles"));
+
+    const stats = document.getElementById("rankings-stats");
+    if (stats) {
+      const rated = RATED();
+      const average = rated.reduce((sum, s) => sum + rawScore(s), 0) / rated.length;
+      const best = sortedByScore(rated)[0];
+      stats.textContent =
+        `${rated.length} venues scored · average ${fmtScore(average)} · top rated ${best.name}`;
+    }
   }
 
   if (page === "league") {

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stadium Scope — Ranking every stadium I've been to</title>
+  <meta name="description" content="Honest rankings and reviews of NFL stadiums, MLB ballparks and NBA arenas, scored on atmosphere, stadium, uniqueness and gameplay.">
+
+  <!-- Inter, the only typeface on the site -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind Play CDN (no build step) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Our design system, loaded after Tailwind so it wins where they overlap -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<!-- data-page tells main.js which renderers to run -->
+<body data-page="home">
+
+  <!-- ===================================================== NAV ============ -->
+  <nav class="nav">
+    <div class="shell nav-inner">
+      <a href="index.html" class="brand"><span class="brand-mark"></span> Stadium Scope</a>
+      <div class="nav-links">
+        <a class="nav-link is-active" href="index.html">Home</a>
+        <a class="nav-link" href="nfl.html">NFL</a>
+        <a class="nav-link" href="mlb.html">MLB</a>
+        <a class="nav-link" href="nba.html">NBA</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===================================================== HERO =========== -->
+  <header class="shell" style="padding-block:clamp(64px,11vw,132px) clamp(48px,7vw,88px)">
+    <p class="eyebrow reveal hero-in">Est. 2026 <span class="dot">·</span> Fifteen venues <span class="dot">·</span> Three sports</p>
+
+    <h1 class="display mt-7 reveal hero-in">
+      Every stadium<br>
+      I've been to,<br>
+      <span style="color:var(--accent)">ranked honestly.</span>
+    </h1>
+
+    <div class="mt-12 grid lg:grid-cols-[minmax(0,1fr)_auto] gap-10 lg:items-end">
+      <p class="lede reveal hero-in">
+        Stadium Scope scores NFL stadiums, MLB ballparks and NBA arenas on four things
+        and nothing else: <strong style="color:var(--ink)">atmosphere</strong>,
+        the <strong style="color:var(--ink)">stadium</strong> itself,
+        <strong style="color:var(--ink)">uniqueness</strong>, and
+        <strong style="color:var(--ink)">gameplay</strong>. Average the four, round to
+        one decimal, publish it. No sponsors, no rounding up for a famous name.
+      </p>
+      <div class="flex flex-wrap gap-3 reveal hero-in">
+        <a class="btn btn-accent" href="#master">See the full ranking</a>
+        <a class="btn" href="#overview">How it works</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================================================ TABLE 1: OVERVIEW === -->
+  <section id="overview" class="shell" style="padding-block:clamp(48px,7vw,80px) 0">
+    <div class="section-head reveal">
+      <div>
+        <p class="eyebrow">Table 01</p>
+        <h2 class="h2 mt-3">The site<br>at a glance</h2>
+      </div>
+      <p class="lede lg:max-w-md lg:text-right">
+        What's actually on Stadium Scope right now — how many venues per league,
+        how each league scores on average, and which one currently sits at number one.
+      </p>
+    </div>
+
+    <!-- Built by renderOverviewTable() in main.js -->
+    <div class="table-wrap mt-9 reveal" id="overview-table"></div>
+    <p class="table-note reveal">
+      Average score = the mean of every venue's overall score in that league. All
+      figures are calculated from <code>data/stadiums.js</code> at page load.
+    </p>
+  </section>
+
+  <!-- ==================================================== TOP FIVE ======== -->
+  <section class="shell" style="padding-block:clamp(64px,9vw,110px) 0">
+    <div class="section-head reveal">
+      <div>
+        <p class="eyebrow">The podium</p>
+        <h2 class="h2 mt-3">Top five,<br>any sport</h2>
+      </div>
+      <p class="lede lg:max-w-md lg:text-right">
+        The five best gamedays across all three leagues. Tap any row for the full
+        review, the category breakdown and the details.
+      </p>
+    </div>
+
+    <!-- Built by renderRankingList(); .ranking-list makes GSAP stagger the rows -->
+    <div class="mt-8 ranking-list" id="ranking-list"></div>
+  </section>
+
+  <!-- ================================================= TABLE 2: MASTER ==== -->
+  <section id="master" class="shell" style="padding-block:clamp(64px,9vw,110px) 0">
+    <div class="section-head reveal">
+      <div>
+        <p class="eyebrow">Table 02</p>
+        <h2 class="h2 mt-3">The master<br>ranking</h2>
+      </div>
+      <p class="lede lg:max-w-md lg:text-right">
+        All fifteen venues from all three leagues in one list, sorted by overall
+        score with every category shown. Scroll sideways on a phone.
+      </p>
+    </div>
+
+    <!-- Built by renderMasterTable() in main.js -->
+    <div class="table-wrap mt-9 reveal" id="master-table"></div>
+    <p class="table-note reveal">
+      Atmo = atmosphere · Stad = the stadium itself · Uniq = uniqueness · Game = gameplay.
+      Overall is the average of the four, rounded to one decimal.
+    </p>
+  </section>
+
+  <!-- =================================================== LEAGUE TILES ===== -->
+  <section class="shell" style="padding-block:clamp(64px,9vw,110px) 0">
+    <div class="section-head reveal">
+      <div>
+        <p class="eyebrow">By league</p>
+        <h2 class="h2 mt-3">Pick a sport</h2>
+      </div>
+    </div>
+    <!-- Built by renderLeagueTiles() in main.js -->
+    <div class="mt-9 grid sm:grid-cols-2 lg:grid-cols-3 gap-5" id="league-tiles"></div>
+  </section>
+
+  <!-- ==================================================== METHODOLOGY ===== -->
+  <section class="shell" style="padding-block:clamp(64px,9vw,110px) 0">
+    <div class="section-head reveal">
+      <div>
+        <p class="eyebrow">Method</p>
+        <h2 class="h2 mt-3">Four numbers,<br>one score</h2>
+      </div>
+    </div>
+
+    <div class="mt-9 grid sm:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-8">
+      <div class="reveal" style="border-top:1px solid var(--ink); padding-top:18px">
+        <p class="h3">Atmosphere</p>
+        <p class="prose text-sm mt-2">Crowd noise, traditions, whether the building
+          feels alive on a normal Tuesday and not just in the playoffs.</p>
+      </div>
+      <div class="reveal" style="border-top:1px solid var(--ink); padding-top:18px">
+        <p class="h3">Stadium</p>
+        <p class="prose text-sm mt-2">The building as a building: concourses, seats,
+          food, how well it moves eighty thousand people.</p>
+      </div>
+      <div class="reveal" style="border-top:1px solid var(--ink); padding-top:18px">
+        <p class="h3">Uniqueness</p>
+        <p class="prose text-sm mt-2">Could this exist anywhere else? Ivy, a Green
+          Monster, a bay behind right field — or a grey bowl in a car park.</p>
+      </div>
+      <div class="reveal" style="border-top:1px solid var(--ink); padding-top:18px">
+        <p class="h3">Gameplay</p>
+        <p class="prose text-sm mt-2">Sightlines, how close you sit, and whether the
+          venue actually makes the sport better to watch.</p>
+      </div>
+    </div>
+
+    <p class="lede mt-10 reveal">
+      Overall score = (atmosphere + stadium + uniqueness + gameplay) ÷ 4, rounded to
+      one decimal place. It's computed in code every time the page loads, so a rating
+      can never disagree with the score next to it.
+    </p>
+  </section>
+
+  <!-- ======================================================= FOOTER ======= -->
+  <footer class="footer">
+    <div class="shell flex flex-col sm:flex-row justify-between gap-6">
+      <div>
+        <p class="brand"><span class="brand-mark"></span> Stadium Scope</p>
+        <p class="text-sm mt-3" style="color:var(--ink-soft)">
+          A personal, opinionated stadium ranking project.
+        </p>
+      </div>
+      <div class="flex gap-8 text-sm" style="color:var(--ink-soft)">
+        <a class="link-u" href="nfl.html">NFL</a>
+        <a class="link-u" href="mlb.html">MLB</a>
+        <a class="link-u" href="nba.html">NBA</a>
+      </div>
+      <p class="text-sm" style="color:var(--ink-faint)">© <span data-year></span> Stadium Scope</p>
+    </div>
+  </footer>
+
+  <!-- ======================================================= SCRIPTS ====== -->
+  <!-- GSAP + ScrollTrigger for the motion -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <!-- Data first, then the script that renders it -->
+  <script src="data/stadiums.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,392 @@
+/* =============================================================================
+   STADIUM SCOPE — SHARED STYLES
+   -----------------------------------------------------------------------------
+   Tailwind (loaded from the Play CDN) handles layout: flex, grid, spacing.
+   This file handles the *design system*: type, colour, rules, tables, meters.
+
+   The look: editorial print. Warm paper background, near-black ink, ONE accent
+   (crimson), hairline rules instead of boxes and shadows, and big tabular
+   numerals doing the heavy lifting. No gradients anywhere.
+   ========================================================================== */
+
+/* ---------------------------------------------------------------- 1. TOKENS */
+:root {
+  --paper:      #F5F4F0;   /* warm neutral background      */
+  --paper-2:    #FFFFFF;   /* cards / table surface        */
+  --ink:        #0B0B0C;   /* headings and body text       */
+  --ink-soft:   #6B6963;   /* secondary text               */
+  --ink-faint:  #A9A69E;   /* labels, meta                 */
+  --rule:       #E2E0DA;   /* hairline colour              */
+  --rule-dark:  #C9C6BE;   /* stronger hairline            */
+  --accent:     #C8102E;   /* the single accent colour     */
+
+  --shell: 1180px;         /* max content width            */
+  --hair: 1px solid var(--rule);
+}
+
+/* ------------------------------------------------------------------ 2. BASE */
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-feature-settings: "cv02", "cv03", "cv04", "ss01";
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Anything with a number in it should line up in a column. */
+.tnum { font-variant-numeric: tabular-nums; font-feature-settings: "tnum"; }
+
+.shell { width: 100%; max-width: var(--shell); margin-inline: auto; padding-inline: 24px; }
+@media (min-width: 768px) { .shell { padding-inline: 40px; } }
+
+a { color: inherit; text-decoration: none; }
+
+/* ------------------------------------------------------------------ 3. TYPE */
+
+/* Small uppercase label used above every section heading. */
+.eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.eyebrow .dot { color: var(--accent); }
+
+/* Big editorial headings. clamp() = fluid sizing, mobile-first with no
+   breakpoints needed. */
+.display {
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  line-height: 0.92;
+  font-size: clamp(2.75rem, 9vw, 6.5rem);
+  margin: 0;
+}
+.h2 {
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1.02;
+  font-size: clamp(1.9rem, 4.5vw, 3rem);
+  margin: 0;
+}
+.h3 {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  font-size: clamp(1.15rem, 2.2vw, 1.4rem);
+  margin: 0;
+}
+.lede {
+  font-size: clamp(1rem, 1.6vw, 1.18rem);
+  line-height: 1.65;
+  color: var(--ink-soft);
+  max-width: 62ch;
+}
+.prose { line-height: 1.75; color: #26251F; }
+
+/* Underline that draws itself on hover — used on inline text links. */
+.link-u {
+  background-image: linear-gradient(var(--accent), var(--accent));
+  background-size: 0% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  padding-bottom: 2px;
+}
+.link-u:hover { background-size: 100% 1px; }
+
+/* ------------------------------------------------------- 4. RULES & SECTIONS */
+.rule      { border: 0; border-top: var(--hair); margin: 0; }
+.rule-dark { border: 0; border-top: 1px solid var(--ink); margin: 0; }
+
+/* Section headings sit under a hairline with the eyebrow to the left. */
+.section-head {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-top: 22px;
+  border-top: 1px solid var(--ink);
+}
+@media (min-width: 900px) {
+  .section-head { flex-direction: row; justify-content: space-between; align-items: flex-start; gap: 48px; }
+}
+
+/* --------------------------------------------------------------- 5. NAVBAR */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: color-mix(in srgb, var(--paper) 88%, transparent);
+  backdrop-filter: saturate(180%) blur(14px);
+  border-bottom: var(--hair);
+}
+.nav-inner { display: flex; align-items: center; justify-content: space-between; height: 62px; }
+.brand { font-weight: 800; letter-spacing: -0.03em; font-size: 1.02rem; display: flex; align-items: center; gap: 9px; }
+/* The small crimson square in the wordmark. */
+.brand-mark { width: 13px; height: 13px; background: var(--accent); display: inline-block; }
+.nav-links { display: flex; align-items: center; gap: 22px; }
+.nav-link {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--ink-soft);
+  position: relative;
+  padding-block: 4px;
+  transition: color 0.2s ease;
+}
+.nav-link:hover { color: var(--ink); }
+.nav-link.is-active { color: var(--ink); }
+.nav-link.is-active::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: -1px;
+  height: 2px;
+  background: var(--accent);
+}
+
+/* ------------------------------------------------------- 6. LEAGUE BADGES */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 4px 9px;
+  border: 1px solid var(--rule-dark);
+  border-radius: 999px;
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
+.badge-accent { border-color: var(--accent); color: var(--accent); }
+
+/* ---------------------------------------------------------- 7. TEAM LOGOS */
+/* Drawn in JS (see makeLogo() in main.js): a rounded square in the team's
+   primary colour with the abbreviation on it, or a real image if `logo` is set
+   on the stadium object. */
+.logo {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  border-radius: 9px;
+  overflow: hidden;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  user-select: none;
+}
+.logo img { width: 100%; height: 100%; object-fit: contain; }
+.logo-sm { width: 30px; height: 30px; font-size: 10px; border-radius: 7px; }
+.logo-md { width: 44px; height: 44px; font-size: 13px; }
+.logo-lg { width: 68px; height: 68px; font-size: 20px; border-radius: 14px; }
+
+/* --------------------------------------------------------- 8. RANKING CARDS */
+.rank-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 16px;
+  padding: 22px 4px;
+  border-bottom: var(--hair);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+              padding-left 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+/* Hover lift: the row nudges right and a crimson tick appears at the margin. */
+.rank-card::before {
+  content: "";
+  position: absolute;
+  left: -14px; top: 50%;
+  width: 6px; height: 0;
+  background: var(--accent);
+  transform: translateY(-50%);
+  transition: height 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.rank-card:hover { transform: translateY(-2px); padding-left: 12px; }
+.rank-card:hover::before { height: 60%; }
+
+.rank-num {
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.06em;
+  font-size: clamp(2rem, 6vw, 3.25rem);
+  line-height: 0.85;
+  color: var(--rule-dark);
+  width: 1.9ch;
+  text-align: right;
+  transition: color 0.3s ease;
+}
+.rank-card:hover .rank-num { color: var(--ink); }
+.rank-card:hover .score-big { color: var(--accent); }
+
+.score-big {
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.04em;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  line-height: 1;
+  transition: color 0.3s ease;
+}
+
+/* --------------------------------------------------------------- 9. TABLES */
+.table-wrap {
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+  overflow-x: auto;              /* tables scroll sideways on small screens */
+  -webkit-overflow-scrolling: touch;
+}
+table.data {
+  width: 100%;
+  min-width: 640px;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+table.data thead th {
+  text-align: left;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  padding: 14px 14px;
+  border-bottom: var(--hair);
+  white-space: nowrap;
+  background: var(--paper);
+}
+table.data tbody td {
+  padding: 15px 14px;
+  border-bottom: var(--hair);
+  vertical-align: middle;
+  color: #2A2924;
+}
+table.data tbody tr:last-child td { border-bottom: 0; }
+table.data tbody tr { transition: background-color 0.2s ease; }
+table.data tbody tr:hover { background: var(--paper-2); }
+table.data tbody tr:hover .cell-name { color: var(--accent); }
+.cell-name { font-weight: 650; color: var(--ink); transition: color 0.2s ease; }
+.cell-num  { font-variant-numeric: tabular-nums; text-align: right; }
+.cell-rank { font-variant-numeric: tabular-nums; font-weight: 700; color: var(--ink-faint); width: 46px; }
+.cell-score { font-variant-numeric: tabular-nums; font-weight: 800; text-align: right; color: var(--ink); }
+/* Total / summary row at the bottom of the overview table. */
+table.data tr.row-total td {
+  border-top: 1px solid var(--ink);
+  font-weight: 700;
+  color: var(--ink);
+  background: transparent;
+}
+.table-note { font-size: 12px; color: var(--ink-faint); padding-top: 12px; }
+
+/* ---------------------------------------------------- 10. RATING METERS */
+.meter-row { padding: 18px 0; border-bottom: var(--hair); }
+.meter-track {
+  position: relative;
+  height: 6px;
+  background: var(--rule);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.meter-fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 0;                       /* GSAP animates this to the real value */
+  background: var(--ink);
+  border-radius: 999px;
+}
+/* The top-rated category in a stadium gets the accent colour. */
+.meter-fill.is-best { background: var(--accent); }
+.meter-label { font-weight: 650; font-size: 15px; }
+.meter-blurb { font-size: 12px; color: var(--ink-faint); }
+.meter-value { font-variant-numeric: tabular-nums; font-weight: 800; font-size: 15px; }
+
+/* --------------------------------------------------- 11. DETAIL PAGE BITS */
+.score-hero {
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.06em;
+  line-height: 0.82;
+  font-size: clamp(4.5rem, 16vw, 9rem);
+}
+.info-item { padding: 16px 0; border-bottom: var(--hair); }
+.info-key { font-size: 10.5px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); }
+.info-val { font-weight: 650; font-size: 15px; margin-top: 4px; }
+
+/* Bulleted lists in the review, with crimson / grey markers. */
+.list-pro, .list-con { list-style: none; margin: 0; padding: 0; }
+.list-pro li, .list-con li {
+  position: relative;
+  padding-left: 26px;
+  padding-block: 9px;
+  line-height: 1.6;
+  border-bottom: var(--hair);
+}
+.list-pro li::before, .list-con li::before {
+  position: absolute;
+  left: 0; top: 9px;
+  font-weight: 800;
+  font-size: 14px;
+}
+.list-pro li::before { content: "+"; color: var(--accent); }
+.list-con li::before { content: "–"; color: var(--ink-faint); }
+
+/* Pull-quote used for the final verdict. */
+.verdict {
+  border-left: 2px solid var(--accent);
+  padding-left: 22px;
+  font-size: clamp(1.1rem, 2.4vw, 1.45rem);
+  line-height: 1.5;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+/* ------------------------------------------------------- 12. LEAGUE TILES */
+.tile {
+  display: block;
+  padding: 26px 24px 24px;
+  background: var(--paper-2);
+  border: var(--hair);
+  border-radius: 14px;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+              border-color 0.3s ease;
+}
+.tile:hover { transform: translateY(-6px); border-color: var(--ink); }
+.tile:hover .tile-arrow { transform: translateX(5px); color: var(--accent); }
+.tile-arrow { display: inline-block; transition: transform 0.3s ease, color 0.3s ease; }
+
+/* -------------------------------------------------------- 13. BUTTON/CTA */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 13px;
+  font-weight: 650;
+  padding: 11px 20px;
+  border-radius: 999px;
+  border: 1px solid var(--ink);
+  transition: background-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
+}
+.btn:hover { background: var(--ink); color: var(--paper); transform: translateY(-1px); }
+.btn-accent { border-color: var(--accent); color: var(--accent); }
+.btn-accent:hover { background: var(--accent); color: #fff; }
+
+/* -------------------------------------------------------- 14. ANIMATION */
+/* Elements marked .reveal start hidden; GSAP + ScrollTrigger fades and slides
+   them in. If JS is disabled, the fallback below keeps everything visible. */
+.reveal { opacity: 0; transform: translateY(22px); }
+.js-off .reveal { opacity: 1; transform: none; }
+
+/* Respect users who ask for less motion. */
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1 !important; transform: none !important; }
+  html { scroll-behavior: auto; }
+  * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}
+
+/* ----------------------------------------------------------- 15. FOOTER */
+.footer { border-top: 1px solid var(--ink); margin-top: 96px; padding-block: 44px 60px; }
+.footer a:hover { color: var(--accent); }

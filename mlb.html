@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MLB Ballpark Rankings — Stadium Scope</title>
+  <meta name="description" content="Every MLB ballpark I&#39;ve been to, ranked on atmosphere, stadium, uniqueness and gameplay.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<!-- data-league tells main.js which subset of the data to render -->
+<body data-page="league" data-league="MLB">
+
+  <nav class="nav">
+    <div class="shell nav-inner">
+      <a href="index.html" class="brand"><span class="brand-mark"></span> Stadium Scope</a>
+      <div class="nav-links">
+        <a class="nav-link" href="index.html">Home</a>
+        <a class="nav-link" href="nfl.html">NFL</a>
+        <a class="nav-link is-active" href="mlb.html">MLB</a>
+        <a class="nav-link" href="nba.html">NBA</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===================================================== HERO =========== -->
+  <header class="shell" style="padding-block:clamp(56px,9vw,104px) clamp(40px,6vw,72px)">
+    <p class="eyebrow reveal hero-in">Baseball <span class="dot">·</span> League 02 of 03</p>
+    <h1 class="display mt-6 reveal hero-in">MLB<br>ballparks</h1>
+    <p class="lede mt-7 reveal hero-in" id="league-intro">
+      Baseball is the sport where the building matters most. There is no clock, the
+      game leaves you time to look around, and a ballpark's quirks — a wall, a corner,
+      a view over the outfield — become part of how the game is played. The old ones
+      earned their place; the good new ones knew what to borrow.
+    </p>
+    <!-- Filled in by main.js with live counts and averages -->
+    <p class="eyebrow mt-8 reveal hero-in" id="league-stats"></p>
+  </header>
+
+  <!-- ================================================== RANKING LIST ====== -->
+  <section class="shell" style="padding-block:clamp(24px,4vw,40px) 0">
+    <div class="section-head reveal">
+      <div>
+        <p class="eyebrow">The ranking</p>
+        <h2 class="h2 mt-3">Best to worst</h2>
+      </div>
+      <p class="lede lg:max-w-md lg:text-right">
+        Ranked by overall score. Tap a row for the full review.
+      </p>
+    </div>
+    <div class="mt-8 ranking-list" id="ranking-list"></div>
+  </section>
+
+  <!-- ================================================= LEAGUE TABLE ======= -->
+  <section class="shell" style="padding-block:clamp(64px,9vw,110px) 0">
+    <div class="section-head reveal">
+      <div>
+        <p class="eyebrow">Table 04 <span class="dot">·</span> MLB</p>
+        <h2 class="h2 mt-3">Venues I've<br>visited</h2>
+      </div>
+      <p class="lede lg:max-w-md lg:text-right">
+        The same ranking with the details attached — city, year opened, capacity and roof.
+      </p>
+    </div>
+    <div class="table-wrap mt-9 reveal" id="league-table"></div>
+    <p class="table-note reveal">Sorted by rank. Overall score is the average of the four categories.</p>
+  </section>
+
+  <!-- ==================================================== OTHER LEAGUES === -->
+  <section class="shell" style="padding-block:clamp(64px,9vw,110px) 0">
+    <div class="section-head reveal">
+      <div><p class="eyebrow">Keep going</p><h2 class="h2 mt-3">Other leagues</h2></div>
+    </div>
+    <div class="mt-8 grid sm:grid-cols-2 gap-5">
+      <a class="tile reveal" href="nfl.html">
+        <div class="flex items-start justify-between">
+          <span class="h2" style="letter-spacing:-0.05em">NFL</span>
+          <span class="tile-arrow text-2xl" style="color:var(--ink-faint)">→</span>
+        </div>
+        <p class="text-sm mt-2" style="color:var(--ink-soft)">Stadiums, ranked</p>
+      </a>
+      <a class="tile reveal" href="nba.html">
+        <div class="flex items-start justify-between">
+          <span class="h2" style="letter-spacing:-0.05em">NBA</span>
+          <span class="tile-arrow text-2xl" style="color:var(--ink-faint)">→</span>
+        </div>
+        <p class="text-sm mt-2" style="color:var(--ink-soft)">Arenas, ranked</p>
+      </a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="shell flex flex-col sm:flex-row justify-between gap-6">
+      <div>
+        <p class="brand"><span class="brand-mark"></span> Stadium Scope</p>
+        <p class="text-sm mt-3" style="color:var(--ink-soft)">A personal, opinionated stadium ranking project.</p>
+      </div>
+      <div class="flex gap-8 text-sm" style="color:var(--ink-soft)">
+        <a class="link-u" href="nfl.html">NFL</a>
+        <a class="link-u" href="mlb.html">MLB</a>
+        <a class="link-u" href="nba.html">NBA</a>
+      </div>
+      <p class="text-sm" style="color:var(--ink-faint)">© <span data-year></span> Stadium Scope</p>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="data/stadiums.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>

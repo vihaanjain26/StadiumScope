@@ -39,11 +39,25 @@
   <header class="shell" style="padding-block:clamp(64px,11vw,132px) clamp(48px,7vw,88px)">
     <p class="eyebrow reveal hero-in">Est. 2026 <span class="dot">·</span> 14 venues scored <span class="dot">·</span> 2 booked</p>
 
-    <h1 class="display mt-7 reveal hero-in">
-      Every stadium<br>
-      I've been to,<br>
-      <span style="color:var(--accent)">ranked honestly.</span>
-    </h1>
+    <!-- Headline and portrait sit side by side on a wide screen; on a phone the
+         photo drops underneath the headline. -->
+    <div class="hero-top mt-7">
+      <h1 class="display reveal hero-in">
+        Every stadium<br>
+        I've been to,<br>
+        <span style="color:var(--accent)">ranked honestly.</span>
+      </h1>
+
+      <!-- If the photo file isn't there yet, onerror removes the whole figure
+           so the page never shows a broken image. -->
+      <figure class="hero-photo reveal hero-in">
+        <img src="assets/photos/vihaan-footprint-center.jpg"
+             alt="Vihaan Jain outside Footprint Center in Phoenix before a Suns game"
+             loading="eager"
+             onerror="this.closest('.hero-photo').remove()">
+        <figcaption>Footprint Center <span class="dot">·</span> Phoenix, AZ</figcaption>
+      </figure>
+    </div>
 
     <!-- ---------- Welcome / about the project ---------- -->
     <div class="intro-card mt-11 reveal hero-in">

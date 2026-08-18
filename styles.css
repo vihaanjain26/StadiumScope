@@ -100,6 +100,57 @@ a { color: inherit; text-decoration: none; }
 }
 .link-u:hover { background-size: 100% 1px; }
 
+/* ---------------------------------------------------- HERO: TITLE + PHOTO */
+/* Mobile first: one column, photo under the headline as a wide crop.
+   From 900px up it becomes two columns with the portrait beside the title. */
+.hero-top {
+  display: grid;
+  gap: 28px;
+  align-items: end;
+}
+@media (min-width: 900px) {
+  .hero-top {
+    grid-template-columns: minmax(0, 1fr) 300px;
+    gap: 48px;
+  }
+}
+@media (min-width: 1100px) {
+  .hero-top { grid-template-columns: minmax(0, 1fr) 340px; }
+}
+
+/* The headline now shares its row with the photo, so it gets a slightly
+   smaller cap to keep "Every stadium" on one line in the narrower column. */
+.hero-top .display { font-size: clamp(2.75rem, 6.4vw, 5.5rem); }
+
+.hero-photo {
+  margin: 0;
+  align-self: end;
+}
+.hero-photo img {
+  display: block;
+  width: 100%;
+  /* Wide crop on a phone so the portrait doesn't take over the screen;
+     a proper portrait shape once it sits beside the headline. */
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  /* Bias the crop upward — the subject is in the top half of the frame. */
+  object-position: 50% 22%;
+  border-radius: 14px;
+  border: var(--hair);
+  background: var(--paper-2);
+}
+@media (min-width: 900px) {
+  .hero-photo img { aspect-ratio: 4 / 5; object-position: 50% 30%; }
+}
+.hero-photo figcaption {
+  margin-top: 10px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
 /* The welcome / about box in the hero. A plain white card on the warm paper,
    with one crimson hairline down the left edge so it reads as a note from the
    author rather than another section of the site. */
@@ -166,6 +217,20 @@ a { color: inherit; text-decoration: none; }
   left: 0; right: 0; bottom: -1px;
   height: 2px;
   background: var(--accent);
+}
+
+/* Five nav items plus the wordmark is a squeeze on a narrow phone, so tighten
+   the links rather than letting the wordmark wrap onto two lines. */
+@media (max-width: 560px) {
+  .brand { font-size: 0.92rem; white-space: nowrap; }
+  .brand-mark { width: 11px; height: 11px; }
+  .nav-links { gap: 12px; }
+  .nav-link { font-size: 11.5px; }
+}
+/* Below ~400px even that overflows, so drop the "Home" link — the wordmark
+   on the left already goes home. */
+@media (max-width: 400px) {
+  .nav-links .nav-link[href="index.html"] { display: none; }
 }
 
 /* ------------------------------------------------------- 6. LEAGUE BADGES */

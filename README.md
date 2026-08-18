@@ -32,7 +32,7 @@ nfl.html            NFL ranking + NFL venues table
 mlb.html            MLB ranking + MLB venues table
 nba.html            NBA ranking + NBA venues table
 stadium.html        ONE page that renders any stadium, via ?id= in the URL
-                    e.g. stadium.html?id=lambeau-field
+                    e.g. stadium.html?id=att-stadium
 data/stadiums.js    ← ALL the data lives here. This is the file you edit.
 main.js             All the rendering + animation logic, shared by every page
 styles.css          The design system, shared by every page
@@ -86,6 +86,38 @@ it, and refresh the browser.
 
 You never type an overall score — `overallScore()` in `main.js` calculates it.
 
+### One entry per gameday, not per building
+
+A stadium shared by two teams is scored twice, because a Jets game and a Giants
+game are not the same day out. That's why `metlife-stadium-jets` and
+`metlife-stadium-giants` are separate entries with separate ratings.
+
+### Venues you've booked but not visited
+
+Give the entry `status: "upcoming"`, a `visit` line, and `rank`, `ratings` and
+`review` all set to `null`:
+
+```js
+{
+  id: "empower-field",
+  name: "Empower Field at Mile High",
+  team: "Denver Broncos",
+  league: "NFL",
+  rank: null,
+  status: "upcoming",
+  visit: "Sep 20, 2026 · vs Jaguars",
+  brand: { abbr: "DEN", primary: "#FB4F14", secondary: "#002244" },
+  ratings: null,
+  review: null,
+  info: { /* … */ },
+},
+```
+
+It shows up under **Up next** on its league page and counts in the "Booked"
+column of the overview table, but stays out of every ranking and average. When
+you've been: delete `status` and `visit`, fill in `ratings`, `review` and `rank`,
+and it moves into the ranking on its own.
+
 ---
 
 ## How the score works
@@ -94,8 +126,10 @@ You never type an overall score — `overallScore()` in `main.js` calculates it.
 Overall = (atmosphere + stadium + uniqueness + gameplay) / 4
 ```
 
-rounded to one decimal place, computed in `overallScore()` in `main.js` every
-time a page loads. Sorting uses the *unrounded* average, so 9.05 still beats 9.04.
+rounded to two decimal places, computed in `overallScore()` in `main.js` every
+time a page loads. Sorting uses the *unrounded* average, so 8.4375 still beats
+8.4374. Trailing zeros are trimmed, so 8.5 prints as `8.5` and 8.01 as `8.01`.
+Change `SCORE_DECIMALS` at the top of `main.js` to show more or fewer.
 
 The four categories are defined in `RATING_CATEGORIES` at the top of
 `data/stadiums.js`. Add or rename one there and the meters, the table columns and

@@ -27,6 +27,15 @@
    brand     { abbr, primary, secondary } — used to draw the team logo badge
    logo      OPTIONAL path to a real logo image, e.g. "assets/logos/gb.svg".
              If present it is used instead of the generated badge.
+   status    OPTIONAL "upcoming" for a venue that's booked but not yet visited.
+             Such an entry has rank: null, ratings: null and review: null, and
+             is listed under "Up next" instead of in the ranking.
+   visit     OPTIONAL date line shown for an upcoming venue, e.g.
+             "Oct 4, 2026 · vs Rams".
+
+   ONE STADIUM PER GAMEDAY, NOT PER BUILDING
+   A shared stadium is scored once per team — MetLife appears twice, as
+   metlife-stadium-jets and metlife-stadium-giants, with different ratings.
    ========================================================================== */
 
 /* The four categories that make up the overall score.
@@ -39,72 +48,76 @@ const RATING_CATEGORIES = [
 ];
 
 const STADIUMS = [
-  /* ------------------------------------------------------------------ NFL -- */
+  /* ------------------------------------------------------------------ NFL --
+     Ratings below are the real ones from the "going to all NFL stadiums"
+     project. Note MetLife appears twice — once for the Jets, once for the
+     Giants — because they're scored as separate gamedays.
+     The review text is placeholder: edit it, the numbers are already right. */
   {
-    id: "lambeau-field",
-    name: "Lambeau Field",
-    team: "Green Bay Packers",
+    id: "att-stadium",
+    name: "AT&T Stadium",
+    team: "Dallas Cowboys",
     league: "NFL",
     rank: 1,
-    brand: { abbr: "GB", primary: "#203731", secondary: "#FFB612" },
-    ratings: { atmosphere: 9.8, stadium: 8.6, uniqueness: 9.7, gameplay: 9.2 },
+    brand: { abbr: "DAL", primary: "#041E42", secondary: "#869397" },
+    ratings: { atmosphere: 8.5, stadium: 8.85, uniqueness: 8.75, gameplay: 8.85 },
     review: {
       overview:
-        "Lambeau is the closest thing American sport has to a cathedral. It sits in a residential neighbourhood, people park on front lawns, and the whole town moves toward the same building at the same time. The bowl itself is plain by modern standards — no ribbon boards wrapping every surface, no club level stacked over your head — and that plainness is exactly the point. You are there for football in the cold with 78,000 people who have held the same seats for three generations.",
+        "Everything here is scaled up until it stops feeling like a stadium and starts feeling like an airport terminal with a football field in it. The retractable roof and the glass end zone doors make the interior feel enormous and bright, and the centre-hung video board is still the reference point for every board built since. It grades out top of the league on the building, the sightlines and the game itself — the crowd is the only category that doesn't lead.",
       liked: [
-        "The walk-up: neighbourhood streets, tailgates on driveways, no ocean of parking garages",
-        "Bowl seating means almost every seat looks straight down at the field",
-        "Traditions that are actually observed — the Lambeau Leap, the crowd noise on third down",
-        "Cold weather is treated as a feature, not an apology",
+        "Scale — the interior volume is genuinely hard to process in photos",
+        "The video board and the sightlines it gives you from anywhere in the bowl",
+        "Roof and end-zone glass keep it airy instead of cavernous",
+        "The contemporary art collection on the concourses is museum-grade",
       ],
       disliked: [
-        "Bench seating with no backs; four hours is a long time on aluminium",
-        "Concourses get genuinely tight at halftime",
-        "Concessions are fine but nothing you'd travel for",
+        "Corporate crowd stays quiet until something big happens",
+        "The upper deck is a serious climb from the field",
+        "Arlington's parking-lot setting — nowhere to walk to before or after",
       ],
       verdict:
-        "The best atmosphere in the NFL and the one stadium I'd tell someone to see first. It loses a little on comfort and amenities, and gains all of it back the moment the place gets loud.",
+        "The most complete stadium on the list. It wins on the building, not on the noise, and that's still enough for number one.",
     },
-    info: { capacity: "81,441", opened: 1957, city: "Green Bay, WI", surface: "Hybrid grass", roof: "Open air" },
+    info: { capacity: "80,000", opened: 2009, city: "Arlington, TX", surface: "Artificial turf", roof: "Retractable" },
   },
   {
-    id: "arrowhead-stadium",
-    name: "Arrowhead Stadium",
-    team: "Kansas City Chiefs",
+    id: "levis-stadium",
+    name: "Levi's Stadium",
+    team: "San Francisco 49ers",
     league: "NFL",
     rank: 2,
-    brand: { abbr: "KC", primary: "#E31837", secondary: "#FFB81C" },
-    ratings: { atmosphere: 9.9, stadium: 8.4, uniqueness: 8.8, gameplay: 9.1 },
+    brand: { abbr: "SF", primary: "#AA0000", secondary: "#B3995D" },
+    ratings: { atmosphere: 8.8, stadium: 8.6, uniqueness: 8.4, gameplay: 8.7 },
     review: {
       overview:
-        "Arrowhead is the loudest building I have ever stood in, and it is not close. The bowl is steep and closed off at both ends, which traps sound instead of letting it escape, and the crowd has clearly rehearsed. The tailgate scene in the surrounding lots starts hours early and is a full event on its own — barbecue everywhere, and the smell carries into the concourse.",
+        "Levi's is the best crowd on this list so far and a genuinely well-built modern stadium underneath it. The asymmetric design — a tall suite tower on one side, an open low deck on the other — gives it a look nothing else has, and the 49ers Museum is the rare stadium attraction worth arriving early for. The famous problem is the sun: the east side bakes for an afternoon kickoff.",
       liked: [
-        "Verified-loudest-stadium noise that you feel in your chest",
-        "The tailgate lots are the best pre-game scene in the league",
-        "Steep upper deck keeps you close to the action even at the top",
-        "Kansas City barbecue inside the building is the real thing",
+        "Loudest crowd I've scored in the NFL so far",
+        "Asymmetric bowl gives it a real silhouette instead of a generic ring",
+        "Excellent Bay Area food and the best stadium wifi anywhere",
+        "The 49ers Museum genuinely rewards showing up early",
       ],
       disliked: [
-        "The stadium is marooned in a parking lot — nothing to walk to",
-        "Getting out afterwards takes about an hour",
-        "The building's 1970s bones show once you're off the seating bowl",
+        "The sunny side is brutal for a 1pm kickoff",
+        "Santa Clara is a long way from San Francisco itself",
+        "Surrounding area is office parks — no atmosphere outside the gates",
       ],
       verdict:
-        "Come for the noise, stay for the food. Arrowhead sits just behind Lambeau only because the setting is a parking lot rather than a town.",
+        "Great crowd, smart building, terrible sun. Buy on the shaded side and it's one of the best days out in the league.",
     },
-    info: { capacity: "76,416", opened: 1972, city: "Kansas City, MO", surface: "Natural grass", roof: "Open air" },
+    info: { capacity: "68,500", opened: 2014, city: "Santa Clara, CA", surface: "Natural grass", roof: "Open air" },
   },
   {
     id: "sofi-stadium",
     name: "SoFi Stadium",
-    team: "Los Angeles Rams / Chargers",
+    team: "Los Angeles Rams",
     league: "NFL",
     rank: 3,
-    brand: { abbr: "LA", primary: "#003594", secondary: "#FFA300" },
-    ratings: { atmosphere: 8.2, stadium: 9.9, uniqueness: 9.3, gameplay: 8.4 },
+    brand: { abbr: "LAR", primary: "#003594", secondary: "#FFA300" },
+    ratings: { atmosphere: 8, stadium: 8.9, uniqueness: 8.85, gameplay: 8.25 },
     review: {
       overview:
-        "SoFi is the most impressive building in American sport and it knows it. The translucent canopy floats over an open-air bowl, the field is sunk below ground level so you walk in at the top of the lower deck, and the double-sided Infinity Screen hangs over midfield like a piece of infrastructure that wandered in. It is a genuinely beautiful piece of architecture. It is also, on the wrong Sunday, half full of the visiting team's fans.",
+        "SoFi is the most impressive building in American sport and it knows it. The translucent canopy floats over an open-air bowl, the field is sunk below ground level so you walk in at the top of the lower deck, and the double-sided Infinity Screen hangs over midfield like a piece of infrastructure that wandered in. It scores top of the league on the building and near the bottom on the crowd, which is the whole story of the place.",
       liked: [
         "The canopy and the Infinity Screen — nothing else looks like this",
         "Sunken bowl means short walks and easy sightlines from the entry level",
@@ -122,60 +135,171 @@ const STADIUMS = [
     info: { capacity: "70,240", opened: 2020, city: "Inglewood, CA", surface: "Artificial turf", roof: "Fixed canopy, open sides" },
   },
   {
-    id: "att-stadium",
-    name: "AT&T Stadium",
-    team: "Dallas Cowboys",
+    id: "gillette-stadium",
+    name: "Gillette Stadium",
+    team: "New England Patriots",
     league: "NFL",
     rank: 4,
-    brand: { abbr: "DAL", primary: "#041E42", secondary: "#869397" },
-    ratings: { atmosphere: 8.0, stadium: 9.4, uniqueness: 8.7, gameplay: 8.1 },
+    brand: { abbr: "NE", primary: "#002244", secondary: "#C60C30" },
+    ratings: { atmosphere: 8.45, stadium: 8.4, uniqueness: 8.5, gameplay: 8.45 },
     review: {
       overview:
-        "Everything here is scaled up until it stops feeling like a stadium and starts feeling like an airport terminal with a football field in it. The retractable roof and the glass end zone doors make the interior feel enormous and bright, and the contemporary art collection on the concourses is a real museum-grade collection, which is a stranger sentence than it should be. The centre-hung video board is still the reference point for every board built since.",
+        "The most evenly scored stadium on the list — every category lands within a tenth of the others, which tells you most of what Gillette is. The lighthouse and bridge at the north end give it a genuine signature, the 2023 renovation added the biggest video board in the league, and Patriot Place outside means there's somewhere to be for three hours before kickoff. Nothing here is spectacular and nothing is a problem.",
       liked: [
-        "Scale — the interior volume is genuinely hard to process in photos",
-        "The art collection makes wandering the concourses worthwhile",
-        "Roof and end-zone glass keep it airy instead of cavernous",
-        "Upper-deck sightlines are better than the height suggests",
+        "The lighthouse end zone — a real identity, not a manufactured one",
+        "Patriot Place gives you a full afternoon outside the gates",
+        "The renovated north end and its video board are a genuine upgrade",
+        "Cold-weather football the way it's supposed to look",
       ],
       disliked: [
-        "Corporate, quiet crowd until something big happens",
-        "The upper deck is a serious climb from the field",
-        "Arlington's parking-lot setting again means nowhere to walk to",
+        "Foxborough is a long way from Boston and traffic in and out is grim",
+        "Crowd expects to win and can go quiet when it isn't happening",
+        "Turf rather than grass, in a stadium that would suit grass",
       ],
       verdict:
-        "A spectacle rather than a football atmosphere. Go once for the building; go to Arrowhead for the noise.",
+        "The most balanced stadium I've been to — good at everything, best at nothing. Sort out the traffic and it climbs.",
     },
-    info: { capacity: "80,000", opened: 2009, city: "Arlington, TX", surface: "Artificial turf", roof: "Retractable" },
+    info: { capacity: "64,628", opened: 2002, city: "Foxborough, MA", surface: "Artificial turf", roof: "Open air" },
   },
   {
-    id: "metlife-stadium",
-    name: "MetLife Stadium",
-    team: "New York Giants / Jets",
+    id: "state-farm-stadium",
+    name: "State Farm Stadium",
+    team: "Arizona Cardinals",
     league: "NFL",
     rank: 5,
-    brand: { abbr: "NY", primary: "#0B2265", secondary: "#A71930" },
-    ratings: { atmosphere: 7.0, stadium: 7.8, uniqueness: 6.2, gameplay: 7.4 },
+    brand: { abbr: "ARI", primary: "#97233F", secondary: "#FFB612" },
+    ratings: { atmosphere: 8.3, stadium: 8.7, uniqueness: 8.4, gameplay: 8.35 },
     review: {
       overview:
-        "MetLife is competent and completely anonymous. It was built to be shared by two teams, which means it commits to neither — the concourse signage swaps colours depending on who is home and the building has no identity of its own underneath. Sightlines are good, the concourses are wide, and there is nothing here you will remember a week later.",
+        "The engineering is the attraction. The entire natural grass field sits on a tray that rolls out of the building into the Arizona sun between games, which is still the most ridiculous thing any stadium does, and the retractable roof means you get real grass indoors in a desert. The exterior's shifting metal panels look like nothing else in the league. The crowd is the quietest part of it.",
       liked: [
+        "The roll-out grass tray — genuinely unique engineering",
+        "Retractable roof makes a September game in Phoenix bearable",
+        "Exterior panels shift colour through the day; it's a real building",
+        "Grass field indoors, which almost nowhere else manages",
+      ],
+      disliked: [
+        "Crowd is heavily neutral and often out-shouted by visitors",
+        "Glendale is well outside Phoenix with the drive to match",
+        "Interior bowl is more ordinary than the outside promises",
+      ],
+      verdict:
+        "Go for the building and the roof. The gameday around it hasn't caught up to the engineering.",
+    },
+    info: { capacity: "63,400", opened: 2006, city: "Glendale, AZ", surface: "Natural grass (roll-out)", roof: "Retractable" },
+  },
+  {
+    id: "mt-bank-stadium",
+    name: "M&T Bank Stadium",
+    team: "Baltimore Ravens",
+    league: "NFL",
+    rank: 6,
+    brand: { abbr: "BAL", primary: "#241773", secondary: "#9E7C0C" },
+    ratings: { atmosphere: 8.3, stadium: 8.3, uniqueness: 8.25, gameplay: 7.75 },
+    review: {
+      overview:
+        "A solid, unglamorous football stadium with a loud crowd and a real city around it. It sits next to Camden Yards in downtown Baltimore, so you can walk from a bar to your seat, and the purple-heavy crowd commits from the first snap. Gameplay is the weak spot — the upper deck sits back further than it should and a lot of seats feel a long way from the field.",
+      liked: [
+        "Downtown location, walkable, right next to Camden Yards",
+        "Crowd is loud and stays loud",
+        "End-zone video boards are among the biggest in the league",
+        "Real tailgate culture in the surrounding lots",
+      ],
+      disliked: [
+        "Upper deck feels distant — the weakest sightlines of the ones I've scored",
+        "Concourses back up badly at halftime",
+        "The bowl itself is fairly plain from the inside",
+      ],
+      verdict:
+        "Great city, great noise, average seats. Buy in the lower bowl and the score goes up a category.",
+    },
+    info: { capacity: "71,008", opened: 1998, city: "Baltimore, MD", surface: "Natural grass", roof: "Open air" },
+  },
+  {
+    id: "metlife-stadium-jets",
+    name: "MetLife Stadium",
+    team: "New York Jets",
+    league: "NFL",
+    rank: 7,
+    brand: { abbr: "NYJ", primary: "#125740", secondary: "#FFFFFF" },
+    ratings: { atmosphere: 8.2, stadium: 7.8, uniqueness: 7.9, gameplay: 8.15 },
+    review: {
+      overview:
+        "Same building as the Giants entry, different day out — and it scores better on every category. A Jets crowd shows up expecting to be disappointed and is loud about it anyway, which is more entertaining than it sounds. The stadium underneath is still a shared, anonymous grey bowl that commits to neither tenant, but the sightlines are honestly good.",
+      liked: [
+        "Jets crowd is louder and funnier than the record deserves",
         "Genuinely good sightlines from almost every seat",
-        "Train access from Manhattan is easy and beats driving",
+        "Train from Manhattan beats driving by a mile",
         "Wide, modern concourses that move a big crowd well",
       ],
       disliked: [
-        "No identity — a grey bowl in a car park in New Jersey",
-        "Atmosphere is inconsistent and often flat",
-        "The surrounding complex has nothing to do before or after",
+        "The building has no identity of its own under the swapped-out signage",
+        "Nothing to do in the surrounding complex before or after",
         "Exposed and cold in December without the charm that earns elsewhere",
       ],
       verdict:
-        "Perfectly fine, entirely forgettable. If you live nearby it's an easy afternoon; it is not a stadium worth travelling for.",
+        "The better of the two MetLife gamedays. The crowd carries a building that gives it nothing.",
+    },
+    info: { capacity: "82,500", opened: 2010, city: "East Rutherford, NJ", surface: "Artificial turf", roof: "Open air" },
+  },
+  {
+    id: "metlife-stadium-giants",
+    name: "MetLife Stadium",
+    team: "New York Giants",
+    league: "NFL",
+    rank: 8,
+    brand: { abbr: "NYG", primary: "#0B2265", secondary: "#A71930" },
+    ratings: { atmosphere: 7.6, stadium: 7.7, uniqueness: 7.5, gameplay: 7.75 },
+    review: {
+      overview:
+        "The lowest-scoring gameday I've had. Same grey bowl in the same New Jersey car park, but with a Giants crowd that arrives late, sits down and stays there. Nothing is wrong with the stadium exactly — the concourses are wide, the seats are fine, the sightlines work — there is just nothing here at all, and a flat crowd removes the last reason to care.",
+      liked: [
+        "Sightlines are fine, which is the most positive thing available",
+        "Easy train access from Manhattan",
+        "Concourses handle 80,000 people without a crush",
+      ],
+      disliked: [
+        "No identity — a grey bowl in a car park shared by two teams",
+        "The quietest crowd I've scored",
+        "Nothing walkable before or after; the complex is dead",
+        "Cold and exposed without any of the charm that earns elsewhere",
+      ],
+      verdict:
+        "Bottom of the list and it earned it. If you live nearby it's an easy afternoon; it is not a stadium worth travelling for.",
     },
     info: { capacity: "82,500", opened: 2010, city: "East Rutherford, NJ", surface: "Artificial turf", roof: "Open air" },
   },
 
+  /* --- Booked, not yet visited. No ratings until I've actually been. -------
+     To score one of these: delete `status` and `visit`, then fill in
+     `ratings`, `review` and `rank` exactly like the entries above. It moves
+     into the ranking automatically. */
+  {
+    id: "empower-field",
+    name: "Empower Field at Mile High",
+    team: "Denver Broncos",
+    league: "NFL",
+    rank: null,
+    status: "upcoming",
+    visit: "Sep 20, 2026 · vs Jaguars",
+    brand: { abbr: "DEN", primary: "#FB4F14", secondary: "#002244" },
+    ratings: null,
+    review: null,
+    info: { capacity: "76,125", opened: 2001, city: "Denver, CO", surface: "Natural grass", roof: "Open air" },
+  },
+  {
+    id: "lincoln-financial-field",
+    name: "Lincoln Financial Field",
+    team: "Philadelphia Eagles",
+    league: "NFL",
+    rank: null,
+    status: "upcoming",
+    visit: "Oct 4, 2026 · vs Rams",
+    brand: { abbr: "PHI", primary: "#004C54", secondary: "#A5ACAF" },
+    ratings: null,
+    review: null,
+    info: { capacity: "69,596", opened: 2003, city: "Philadelphia, PA", surface: "Hybrid grass", roof: "Open air" },
+  },
   /* ------------------------------------------------------------------ MLB -- */
   {
     id: "fenway-park",

@@ -36,7 +36,7 @@
 
   <!-- ===================================================== HERO =========== -->
   <header class="shell" style="padding-block:clamp(64px,11vw,132px) clamp(48px,7vw,88px)">
-    <p class="eyebrow reveal hero-in">Est. 2026 <span class="dot">·</span> Fifteen venues <span class="dot">·</span> Three sports</p>
+    <p class="eyebrow reveal hero-in">Est. 2026 <span class="dot">·</span> 18 venues scored <span class="dot">·</span> 2 booked</p>
 
     <h1 class="display mt-7 reveal hero-in">
       Every stadium<br>
@@ -50,8 +50,8 @@
         and nothing else: <strong style="color:var(--ink)">atmosphere</strong>,
         the <strong style="color:var(--ink)">stadium</strong> itself,
         <strong style="color:var(--ink)">uniqueness</strong>, and
-        <strong style="color:var(--ink)">gameplay</strong>. Average the four, round to
-        one decimal, publish it. No sponsors, no rounding up for a famous name.
+        <strong style="color:var(--ink)">gameplay</strong>. Average the four, publish it to two
+        decimals. No sponsors, no rounding up for a famous name.
       </p>
       <div class="flex flex-wrap gap-3 reveal hero-in">
         <a class="btn btn-accent" href="#master">See the full ranking</a>
@@ -68,8 +68,8 @@
         <h2 class="h2 mt-3">The site<br>at a glance</h2>
       </div>
       <p class="lede lg:max-w-md lg:text-right">
-        What's actually on Stadium Scope right now — how many venues per league,
-        how each league scores on average, and which one currently sits at number one.
+        What's actually on Stadium Scope right now — venues visited and booked per
+        league, how each scores on average, and which one sits at number one.
       </p>
     </div>
 
@@ -106,7 +106,7 @@
         <h2 class="h2 mt-3">The master<br>ranking</h2>
       </div>
       <p class="lede lg:max-w-md lg:text-right">
-        All fifteen venues from all three leagues in one list, sorted by overall
+        Every scored venue from all three leagues in one list, sorted by overall
         score with every category shown. Scroll sideways on a phone.
       </p>
     </div>
@@ -115,7 +115,7 @@
     <div class="table-wrap mt-9 reveal" id="master-table"></div>
     <p class="table-note reveal">
       Atmo = atmosphere · Stad = the stadium itself · Uniq = uniqueness · Game = gameplay.
-      Overall is the average of the four, rounded to one decimal.
+      Overall is the average of the four, rounded to two decimals.
     </p>
   </section>
 
@@ -165,8 +165,10 @@
 
     <p class="lede mt-10 reveal">
       Overall score = (atmosphere + stadium + uniqueness + gameplay) ÷ 4, rounded to
-      one decimal place. It's computed in code every time the page loads, so a rating
-      can never disagree with the score next to it.
+      two decimal places. It's computed in code every time the page loads, so a rating
+      can never disagree with the score next to it. Shared stadiums are scored once
+      per team — MetLife appears twice, because a Jets game and a Giants game are not
+      the same day out.
     </p>
   </section>
 

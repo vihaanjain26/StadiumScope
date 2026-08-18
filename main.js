@@ -15,33 +15,59 @@
 
 /* ============================================================ 1. HELPERS === */
 
+/* Scores are shown to two decimal places, matching how they're recorded:
+   8.01, 8.44, 8.74. Change this one number to show more or fewer. */
+const SCORE_DECIMALS = 2;
+
 /* THE score calculation. Every score shown anywhere on the site comes from
    here, so it can never drift out of sync with the data.
-   Overall = average of the four categories, rounded to one decimal place. */
+   Overall = average of the four categories. */
 function overallScore(stadium) {
-  return round1(rawScore(stadium));
+  return roundScore(rawScore(stadium));
 }
 
-/* Unrounded average — used for sorting so that 9.05 still beats 9.04. */
+/* Unrounded average — used for sorting so that 8.4375 still beats 8.4374. */
 function rawScore(stadium) {
+  if (!isRated(stadium)) return 0;
   const values = RATING_CATEGORIES.map((c) => Number(stadium.ratings[c.key]) || 0);
   const total = values.reduce((sum, n) => sum + n, 0);
   return total / values.length;
 }
 
-function round1(n) {
-  return Math.round(n * 10) / 10;
+function roundScore(n) {
+  const factor = 10 ** SCORE_DECIMALS;
+  return Math.round(n * factor) / factor;
 }
 
-/* Always print one decimal place, so 9 shows as "9.0" and columns line up. */
-function fmt1(n) {
-  return round1(n).toFixed(1);
+/* Print a score with no trailing zeros: 8.5 stays "8.5", 8.01 stays "8.01". */
+function fmtScore(n) {
+  return String(roundScore(n));
 }
 
-/* All stadiums in one league. */
+/* A stadium counts as rated once every category has a number on it. Venues
+   that are booked but not yet visited have ratings: null. */
+function isRated(stadium) {
+  return !!stadium.ratings &&
+    RATING_CATEGORIES.every((c) => typeof stadium.ratings[c.key] === "number");
+}
+
+/* All stadiums in one league — including ones not yet visited. */
 function byLeague(league) {
   return STADIUMS.filter((s) => s.league === league);
 }
+
+/* Just the scored ones. This is what every ranking and table is built from. */
+function ratedIn(league) {
+  return byLeague(league).filter(isRated);
+}
+
+/* Booked but not yet visited, soonest first (they carry no score). */
+function upcomingIn(league) {
+  return byLeague(league).filter((s) => !isRated(s));
+}
+
+/* Every scored stadium, all leagues. */
+const RATED = () => STADIUMS.filter(isRated);
 
 /* Sorted by the manual `rank` field (1 = best) — used inside a league. */
 function sortedByRank(list) {
@@ -57,10 +83,10 @@ function sortedByScore(list) {
 
 /* One row of the site overview table. */
 function leagueSummary(league) {
-  const list = byLeague(league);
+  const list = ratedIn(league);
   const best = sortedByScore(list)[0];
   const average = list.reduce((sum, s) => sum + rawScore(s), 0) / list.length;
-  return { league, count: list.length, average, best };
+  return { league, count: list.length, average, best, upcoming: upcomingIn(league).length };
 }
 
 const LEAGUES = ["NFL", "MLB", "NBA"];
@@ -132,7 +158,7 @@ function renderRankingList(container, list) {
         </span>
 
         <span class="text-right pl-3">
-          <span class="score-big tnum">${fmt1(overallScore(stadium))}</span>
+          <span class="score-big tnum">${fmtScore(overallScore(stadium))}</span>
           <span class="block eyebrow mt-1">Overall</span>
         </span>
       </a>
@@ -153,13 +179,14 @@ function renderOverviewTable(container) {
         <td><span class="cell-name">${league}</span></td>
         <td style="color:var(--ink-faint)">${LEAGUE_LABEL[league]}</td>
         <td class="cell-num">${s.count}</td>
-        <td class="cell-num">${fmt1(s.average)}</td>
+        <td class="cell-num" style="color:var(--ink-faint)">${s.upcoming || "—"}</td>
+        <td class="cell-num">${fmtScore(s.average)}</td>
         <td>
           <a class="link-u cell-name" href="stadium.html?id=${esc(s.best.id)}">
             ${esc(s.best.name)}
           </a>
         </td>
-        <td class="cell-score">${fmt1(overallScore(s.best))}</td>
+        <td class="cell-score">${fmtScore(overallScore(s.best))}</td>
         <td class="text-right">
           <a class="link-u text-sm" style="color:var(--accent)"
              href="${league.toLowerCase()}.html">View&nbsp;→</a>
@@ -167,10 +194,11 @@ function renderOverviewTable(container) {
       </tr>`;
   }).join("");
 
-  const totalCount = STADIUMS.length;
-  const totalAvg =
-    STADIUMS.reduce((sum, s) => sum + rawScore(s), 0) / STADIUMS.length;
-  const overallBest = sortedByScore(STADIUMS)[0];
+  const rated = RATED();
+  const totalCount = rated.length;
+  const totalUpcoming = STADIUMS.length - rated.length;
+  const totalAvg = rated.reduce((sum, s) => sum + rawScore(s), 0) / rated.length;
+  const overallBest = sortedByScore(rated)[0];
 
   container.innerHTML = `
     <table class="data">
@@ -178,7 +206,8 @@ function renderOverviewTable(container) {
         <tr>
           <th>League</th>
           <th>Sport</th>
-          <th class="cell-num">Venues</th>
+          <th class="cell-num">Visited</th>
+          <th class="cell-num">Booked</th>
           <th class="cell-num">Avg score</th>
           <th>Highest rated</th>
           <th class="cell-num">Score</th>
@@ -191,13 +220,14 @@ function renderOverviewTable(container) {
           <td>All</td>
           <td style="color:var(--ink-faint)">Three sports</td>
           <td class="cell-num">${totalCount}</td>
-          <td class="cell-num">${fmt1(totalAvg)}</td>
+          <td class="cell-num">${totalUpcoming || "—"}</td>
+          <td class="cell-num">${fmtScore(totalAvg)}</td>
           <td>
             <a class="link-u" href="stadium.html?id=${esc(overallBest.id)}">
               ${esc(overallBest.name)}
             </a>
           </td>
-          <td class="cell-score">${fmt1(overallScore(overallBest))}</td>
+          <td class="cell-score">${fmtScore(overallScore(overallBest))}</td>
           <td></td>
         </tr>
       </tbody>
@@ -208,7 +238,7 @@ function renderOverviewTable(container) {
 function renderMasterTable(container) {
   if (!container) return;
 
-  const rows = sortedByScore(STADIUMS)
+  const rows = sortedByScore(RATED())
     .map((s, i) => `
       <tr>
         <td class="cell-rank">${i + 1}</td>
@@ -221,9 +251,9 @@ function renderMasterTable(container) {
         <td style="color:var(--ink-soft)">${esc(s.team)}</td>
         <td><span class="badge">${s.league}</span></td>
         ${RATING_CATEGORIES.map(
-          (c) => `<td class="cell-num" style="color:var(--ink-faint)">${fmt1(s.ratings[c.key])}</td>`
+          (c) => `<td class="cell-num" style="color:var(--ink-faint)">${fmtScore(s.ratings[c.key])}</td>`
         ).join("")}
-        <td class="cell-score">${fmt1(overallScore(s))}</td>
+        <td class="cell-score">${fmtScore(overallScore(s))}</td>
       </tr>`)
     .join("");
 
@@ -247,7 +277,7 @@ function renderMasterTable(container) {
 function renderLeagueTable(container, league) {
   if (!container) return;
 
-  const rows = sortedByRank(byLeague(league))
+  const rows = sortedByRank(ratedIn(league))
     .map((s, i) => `
       <tr>
         <td class="cell-rank">${i + 1}</td>
@@ -262,7 +292,7 @@ function renderLeagueTable(container, league) {
         <td class="cell-num" style="color:var(--ink-faint)">${esc(s.info.opened)}</td>
         <td class="cell-num" style="color:var(--ink-faint)">${esc(s.info.capacity)}</td>
         <td style="color:var(--ink-faint)">${esc(s.info.roof)}</td>
-        <td class="cell-score">${fmt1(overallScore(s))}</td>
+        <td class="cell-score">${fmtScore(overallScore(s))}</td>
       </tr>`)
     .join("");
 
@@ -307,10 +337,17 @@ function renderStadiumPage() {
 
   document.title = `${stadium.name} — Stadium Scope`;
 
+  /* Booked but not visited yet: there's nothing to score or review, so show
+     the fixtures card instead of pretending we have an opinion. */
+  if (!isRated(stadium)) {
+    renderUpcomingStadiumPage(root, stadium);
+    return;
+  }
+
   const score = overallScore(stadium);
-  const leagueRank = sortedByRank(byLeague(stadium.league))
+  const leagueRank = sortedByRank(ratedIn(stadium.league))
     .findIndex((s) => s.id === stadium.id) + 1;
-  const overallRank = sortedByScore(STADIUMS)
+  const overallRank = sortedByScore(RATED())
     .findIndex((s) => s.id === stadium.id) + 1;
 
   /* Which category scored highest? That bar gets the accent colour. */
@@ -327,7 +364,7 @@ function renderStadiumPage() {
             <span class="meter-label">${c.label}</span>
             <span class="meter-blurb block mt-0.5">${c.blurb}</span>
           </div>
-          <span class="meter-value tnum">${fmt1(value)}<span style="color:var(--ink-faint)">/10</span></span>
+          <span class="meter-value tnum">${fmtScore(value)}<span style="color:var(--ink-faint)">/10</span></span>
         </div>
         <div class="meter-track">
           <div class="meter-fill ${c.key === bestKey ? "is-best" : ""}"
@@ -370,7 +407,7 @@ function renderStadiumPage() {
 
         <div class="lg:text-right shrink-0">
           <div class="eyebrow">Overall score</div>
-          <div class="score-hero mt-2" style="color:var(--accent)">${fmt1(score)}</div>
+          <div class="score-hero mt-2" style="color:var(--accent)">${fmtScore(score)}</div>
           <div class="text-sm mt-2" style="color:var(--ink-faint)">
             Average of ${RATING_CATEGORIES.length} categories, out of 10
           </div>
@@ -431,7 +468,7 @@ function renderStadiumPage() {
 
 /* Previous / next stadium within the same league, at the foot of the page. */
 function renderNeighbours(stadium) {
-  const list = sortedByRank(byLeague(stadium.league));
+  const list = sortedByRank(ratedIn(stadium.league));
   const i = list.findIndex((s) => s.id === stadium.id);
   const prev = list[i - 1];
   const next = list[i + 1];
@@ -446,7 +483,7 @@ function renderNeighbours(stadium) {
         <span class="h3">${esc(s.name)}</span>
       </span>
       <span class="block text-sm mt-2" style="color:var(--ink-soft)">
-        ${esc(s.team)} · ${fmt1(overallScore(s))}
+        ${esc(s.team)} · ${fmtScore(overallScore(s))}
       </span>
     </a>`;
 
@@ -460,7 +497,84 @@ function renderNeighbours(stadium) {
     tile(next, `Ranked lower in ${stadium.league} →`, "text-right");
 }
 
-/* ---- 3f. Home page league tiles ----------------------------------------- */
+/* ---- 3f. Detail page for a venue that hasn't been visited yet ------------ */
+function renderUpcomingStadiumPage(root, stadium) {
+  const info = [
+    ["Capacity", stadium.info.capacity],
+    ["Opened", stadium.info.opened],
+    ["City", stadium.info.city],
+    ["Surface", stadium.info.surface],
+    ["Roof", stadium.info.roof],
+  ].map(([k, v]) => `
+      <div class="info-item">
+        <div class="info-key">${k}</div>
+        <div class="info-val">${esc(v)}</div>
+      </div>`).join("");
+
+  root.innerHTML = `
+    <header class="shell" style="padding-block:56px 40px">
+      <a href="${stadium.league.toLowerCase()}.html"
+         class="eyebrow link-u">← ${stadium.league} rankings</a>
+
+      <div class="mt-9 flex items-center gap-4">
+        ${makeLogo(stadium, "lg")}
+        <div class="flex flex-wrap gap-2">
+          <span class="badge">${stadium.league}</span>
+          <span class="badge badge-accent">Not yet visited</span>
+        </div>
+      </div>
+
+      <h1 class="display mt-6">${esc(stadium.name)}</h1>
+      <p class="lede mt-4">${esc(stadium.team)} &nbsp;·&nbsp; ${esc(stadium.info.city)}</p>
+    </header>
+
+    <div class="shell"><hr class="rule-dark"></div>
+
+    <div class="shell grid lg:grid-cols-[minmax(0,1fr)_380px] gap-14 lg:gap-20"
+         style="padding-block:56px">
+      <div>
+        <p class="eyebrow reveal">Booked for</p>
+        <p class="h2 mt-4 reveal">${esc(stadium.visit || "A date to be confirmed")}</p>
+        <p class="prose mt-7 reveal" style="max-width:56ch">
+          No score yet — the four categories only get filled in after I've
+          actually been. Check back once the game has been played.
+        </p>
+        <a class="btn mt-9 reveal" href="${stadium.league.toLowerCase()}.html">
+          ← See the venues I have scored
+        </a>
+      </div>
+
+      <aside>
+        <p class="eyebrow reveal">Extra info</p>
+        <div class="mt-3" style="border-top:1px solid var(--ink)">${info}</div>
+      </aside>
+    </div>`;
+}
+
+/* ---- 3g. "Up next" strip on a league page ------------------------------- */
+function renderUpcoming(container, league) {
+  const list = upcomingIn(league);
+  /* No booked venues in this league? Hide the whole section. */
+  const section = container && container.closest("[data-upcoming-section]");
+  if (!container || !list.length) {
+    if (section) section.hidden = true;
+    return;
+  }
+
+  container.innerHTML = list.map((s) => `
+    <a class="tile reveal" href="stadium.html?id=${esc(s.id)}">
+      <span class="eyebrow">${esc(s.visit || "Date TBC")}</span>
+      <span class="flex items-center gap-3 mt-3">
+        ${makeLogo(s, "sm")}
+        <span class="h3">${esc(s.name)}</span>
+      </span>
+      <span class="block text-sm mt-2" style="color:var(--ink-soft)">
+        ${esc(s.team)} · ${esc(s.info.city)}
+      </span>
+    </a>`).join("");
+}
+
+/* ---- 3h. Home page league tiles ----------------------------------------- */
 function renderLeagueTiles(container) {
   if (!container) return;
   container.innerHTML = LEAGUES.map((league) => {
@@ -472,7 +586,7 @@ function renderLeagueTiles(container) {
           <span class="tile-arrow text-2xl" style="color:var(--ink-faint)">→</span>
         </div>
         <p class="text-sm mt-2" style="color:var(--ink-soft)">
-          ${s.count} venues · avg ${fmt1(s.average)}
+          ${s.count} venues · avg ${fmtScore(s.average)}
         </p>
         <div class="mt-6 pt-5" style="border-top:1px solid var(--rule)">
           <span class="eyebrow">Number one</span>
@@ -562,21 +676,26 @@ document.addEventListener("DOMContentLoaded", () => {
     /* Top five overall, as a teaser list on the home page. */
     renderRankingList(
       document.getElementById("ranking-list"),
-      sortedByScore(STADIUMS).slice(0, 5)
+      sortedByScore(RATED()).slice(0, 5)
     );
   }
 
   if (page === "league") {
     const league = document.body.dataset.league;             // "NFL" | "MLB" | "NBA"
-    const list = sortedByRank(byLeague(league));
-    renderRankingList(document.getElementById("ranking-list"), list);
+    renderRankingList(
+      document.getElementById("ranking-list"),
+      sortedByRank(ratedIn(league))
+    );
     renderLeagueTable(document.getElementById("league-table"), league);
+    renderUpcoming(document.getElementById("upcoming"), league);
 
     /* Fill in the small stat line under the league heading. */
     const stats = document.getElementById("league-stats");
     if (stats) {
       const s = leagueSummary(league);
-      stats.textContent = `${s.count} venues visited · average score ${fmt1(s.average)} · top rated ${s.best.name}`;
+      const booked = s.upcoming ? ` · ${s.upcoming} booked` : "";
+      stats.textContent =
+        `${s.count} venues visited${booked} · average score ${fmtScore(s.average)} · top rated ${s.best.name}`;
     }
   }
 

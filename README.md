@@ -50,6 +50,22 @@ typed into the HTML.
 To change a review, a rating or a capacity, find the stadium in that file, edit
 it, and refresh the browser.
 
+**The reviews are intentionally blank.** Every stadium has the empty shape ready
+to fill in:
+
+```js
+review: {
+  overview: "",     // a paragraph or two setting the scene
+  liked: [],        // one string per bullet
+  disliked: [],     // one string per bullet
+  verdict: "",      // a sentence or two to close
+},
+```
+
+Fill in as much or as little as you like — each of the four parts only appears on
+the page once it has something in it. A stadium with nothing written shows a
+short "ratings are in, the write-up isn't" note instead of four empty headings.
+
 ---
 
 ## How to add a new stadium

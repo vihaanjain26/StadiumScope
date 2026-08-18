@@ -422,31 +422,7 @@ function renderStadiumPage() {
          style="padding-block:56px">
 
       <!-- Written review -->
-      <div>
-        <section class="reveal">
-          <p class="eyebrow">Overview</p>
-          <p class="prose mt-4 text-[17px]">${esc(stadium.review.overview)}</p>
-        </section>
-
-        <section class="mt-14 reveal">
-          <p class="eyebrow">What I liked</p>
-          <ul class="list-pro mt-4">
-            ${stadium.review.liked.map((l) => `<li>${esc(l)}</li>`).join("")}
-          </ul>
-        </section>
-
-        <section class="mt-14 reveal">
-          <p class="eyebrow">What I didn't like</p>
-          <ul class="list-con mt-4">
-            ${stadium.review.disliked.map((l) => `<li>${esc(l)}</li>`).join("")}
-          </ul>
-        </section>
-
-        <section class="mt-14 reveal">
-          <p class="eyebrow">Final verdict</p>
-          <blockquote class="verdict mt-5">${esc(stadium.review.verdict)}</blockquote>
-        </section>
-      </div>
+      <div>${renderReview(stadium.review)}</div>
 
       <!-- Sidebar: rating meters + extra info -->
       <aside>
@@ -464,6 +440,65 @@ function renderStadiumPage() {
     </div>`;
 
   renderNeighbours(stadium);
+}
+
+/* Builds the written review. Each of the four parts is only rendered once it
+   has something in it, so a stadium with the ratings filled in but the words
+   not written yet shows a short note instead of four empty headings. */
+function renderReview(review) {
+  if (!review) return "";
+
+  const parts = [];
+
+  if (review.overview) {
+    parts.push(`
+      <section class="reveal">
+        <p class="eyebrow">Overview</p>
+        <p class="prose mt-4 text-[17px]">${esc(review.overview)}</p>
+      </section>`);
+  }
+
+  if (review.liked && review.liked.length) {
+    parts.push(`
+      <section class="mt-14 reveal">
+        <p class="eyebrow">What I liked</p>
+        <ul class="list-pro mt-4">
+          ${review.liked.map((l) => `<li>${esc(l)}</li>`).join("")}
+        </ul>
+      </section>`);
+  }
+
+  if (review.disliked && review.disliked.length) {
+    parts.push(`
+      <section class="mt-14 reveal">
+        <p class="eyebrow">What I didn't like</p>
+        <ul class="list-con mt-4">
+          ${review.disliked.map((l) => `<li>${esc(l)}</li>`).join("")}
+        </ul>
+      </section>`);
+  }
+
+  if (review.verdict) {
+    parts.push(`
+      <section class="mt-14 reveal">
+        <p class="eyebrow">Final verdict</p>
+        <blockquote class="verdict mt-5">${esc(review.verdict)}</blockquote>
+      </section>`);
+  }
+
+  /* Nothing written yet — say so rather than showing an empty column. */
+  if (!parts.length) {
+    return `
+      <section class="reveal">
+        <p class="eyebrow">The write-up</p>
+        <p class="lede mt-4">
+          Ratings are in; the write-up isn't. The overview, what I liked, what I
+          didn't and the final verdict go here.
+        </p>
+      </section>`;
+  }
+
+  return parts.join("");
 }
 
 /* Previous / next stadium within the same league, at the foot of the page. */

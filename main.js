@@ -36,7 +36,11 @@ function rawScore(stadium) {
 
 function roundScore(n) {
   const factor = 10 ** SCORE_DECIMALS;
-  return Math.round(n * factor) / factor;
+  /* The tiny nudge matters. (7.6+8.8+8.5+7.8)/4 is exactly 8.175, but in
+     binary floating point it lands on 8.174999999999999, which would round
+     down to 8.17 instead of 8.18. Adding one epsilon's worth pushes a value
+     that *should* sit on the .xx5 boundary back onto it. */
+  return Math.round((n + Number.EPSILON * n) * factor) / factor;
 }
 
 /* Print a score with no trailing zeros: 8.5 stays "8.5", 8.01 stays "8.01". */

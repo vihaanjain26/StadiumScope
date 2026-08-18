@@ -295,7 +295,9 @@ const STADIUMS = [
     info: { capacity: "46,537", opened: 2009, city: "Bronx, NY", surface: "Natural grass", roof: "Open air" },
   },
 
-  /* ------------------------------------------------------------------ NBA -- */
+  /* ------------------------------------------------------------------ NBA --
+     Real ratings from the "going to all NBA stadiums" project. Same rule as
+     the NFL list: one entry per team, and reviews stay blank until written. */
   {
     id: "madison-square-garden",
     name: "Madison Square Garden",
@@ -303,7 +305,7 @@ const STADIUMS = [
     league: "NBA",
     rank: 1,
     brand: { abbr: "NYK", primary: "#006BB6", secondary: "#F58426" },
-    ratings: { atmosphere: 9.5, stadium: 8.3, uniqueness: 9.6, gameplay: 8.9 },
+    ratings: { atmosphere: 8.6, stadium: 8.7, uniqueness: 8.75, gameplay: 8.15 },
     review: {
       overview: "",
       liked: [],
@@ -313,70 +315,39 @@ const STADIUMS = [
     info: { capacity: "19,812", opened: 1968, city: "New York, NY", surface: "Hardwood", roof: "Indoor" },
   },
   {
-    id: "td-garden",
-    name: "TD Garden",
-    team: "Boston Celtics",
+    id: "barclays-center",
+    name: "Barclays Center",
+    team: "Brooklyn Nets",
     league: "NBA",
     rank: 2,
-    brand: { abbr: "BOS", primary: "#007A33", secondary: "#BA9653" },
-    ratings: { atmosphere: 9.3, stadium: 8.4, uniqueness: 9.0, gameplay: 8.7 },
+    brand: { abbr: "BKN", primary: "#000000", secondary: "#FFFFFF" },
+    ratings: { atmosphere: 7.6, stadium: 8.8, uniqueness: 8.5, gameplay: 7.8 },
     review: {
       overview: "",
       liked: [],
       disliked: [],
       verdict: "",
     },
-    info: { capacity: "19,156", opened: 1995, city: "Boston, MA", surface: "Hardwood", roof: "Indoor" },
+    info: { capacity: "17,732", opened: 2012, city: "Brooklyn, NY", surface: "Hardwood", roof: "Indoor" },
   },
   {
-    id: "chase-center",
-    name: "Chase Center",
-    team: "Golden State Warriors",
+    id: "footprint-center",
+    name: "Footprint Center",
+    team: "Phoenix Suns",
     league: "NBA",
     rank: 3,
-    brand: { abbr: "GSW", primary: "#1D428A", secondary: "#FFC72C" },
-    ratings: { atmosphere: 8.4, stadium: 9.7, uniqueness: 8.6, gameplay: 8.5 },
+    brand: { abbr: "PHX", primary: "#1D1160", secondary: "#E56020" },
+    ratings: { atmosphere: 7.7, stadium: 8.4, uniqueness: 8.1, gameplay: 8.25 },
     review: {
       overview: "",
       liked: [],
       disliked: [],
       verdict: "",
     },
-    info: { capacity: "18,064", opened: 2019, city: "San Francisco, CA", surface: "Hardwood", roof: "Indoor" },
-  },
-  {
-    id: "united-center",
-    name: "United Center",
-    team: "Chicago Bulls",
-    league: "NBA",
-    rank: 4,
-    brand: { abbr: "CHI", primary: "#CE1141", secondary: "#000000" },
-    ratings: { atmosphere: 8.7, stadium: 8.2, uniqueness: 8.5, gameplay: 8.4 },
-    review: {
-      overview: "",
-      liked: [],
-      disliked: [],
-      verdict: "",
-    },
-    info: { capacity: "20,917", opened: 1994, city: "Chicago, IL", surface: "Hardwood", roof: "Indoor" },
-  },
-  {
-    id: "crypto-com-arena",
-    name: "Crypto.com Arena",
-    team: "Los Angeles Lakers",
-    league: "NBA",
-    rank: 5,
-    brand: { abbr: "LAL", primary: "#552583", secondary: "#FDB927" },
-    ratings: { atmosphere: 8.5, stadium: 8.0, uniqueness: 8.3, gameplay: 8.2 },
-    review: {
-      overview: "",
-      liked: [],
-      disliked: [],
-      verdict: "",
-    },
-    info: { capacity: "19,068", opened: 1999, city: "Los Angeles, CA", surface: "Hardwood", roof: "Indoor" },
+    info: { capacity: "17,071", opened: 1992, city: "Phoenix, AZ", surface: "Hardwood", roof: "Indoor" },
   },
 ];
+
 
 /* Make the data available to main.js. Because these pages are opened as plain
    files (no build step, no modules), we hang everything off `window`. */

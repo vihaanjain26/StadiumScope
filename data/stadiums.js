@@ -298,7 +298,7 @@ const STADIUMS = [
     },
     info: { capacity: "41,922", opened: 2009, city: "Queens, NY", surface: "Natural grass", roof: "Open air" },
     game: { date: "May 25, 2025", status: "Final",
-             away: { team: "TBC", score: 1 },
+             away: { team: "Dodgers", score: 1 },
              home: { team: "Mets", score: 3 } },
   },
 

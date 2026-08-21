@@ -100,7 +100,8 @@ const STADIUMS = [
         "The concourses are tight, so getting anywhere at a busy moment is a struggle",
         "Not much to do outside the stadium",
       ],
-      verdict: "",
+      verdict:
+        "Worth a visit whether or not you're a 49ers fan. Just don't turn up hours early, because there isn't much to do outside Levi's until the gates open.",
     },
     info: { capacity: "68,500", opened: 2014, city: "Santa Clara, CA", surface: "Natural grass", roof: "Open air" },
     game: { date: "Nov 9, 2025", status: "Final",

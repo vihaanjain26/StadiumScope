@@ -388,6 +388,29 @@ table.data tr.row-total td {
 }
 .table-note { font-size: 12px; color: var(--ink-faint); padding-top: 12px; }
 
+/* A photo of the venue, sitting above the overall score on a stadium page. */
+.venue-photo { margin: 0 0 22px; }
+.venue-photo img {
+  display: block;
+  width: 100%;
+  max-width: 420px;
+  margin-left: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 14px;
+  border: var(--hair);
+  background: var(--paper-2);
+}
+.venue-photo figcaption {
+  margin-top: 9px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--ink-faint);
+}
+@media (max-width: 1023px) {
+  .venue-photo img { max-width: 100%; margin-left: 0; }
+}
+
 /* ---------------------------------------------------- 10. RATING METERS */
 .meter-row { padding: 18px 0; border-bottom: var(--hair); }
 .meter-track {

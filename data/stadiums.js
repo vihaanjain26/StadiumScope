@@ -24,6 +24,9 @@
    ratings   atmosphere / stadium / uniqueness / gameplay, each 0–10
    review    { overview, liked[], disliked[], verdict }
    info      { capacity, opened, city, surface, roof }
+   photo     OPTIONAL my own photo of the venue, shown above the overall score:
+             { src: "assets/photos/<id>.jpg", caption: "..." }
+             Leave it off, or leave the file out, and nothing is shown.
    game      the game I actually attended:
              { date, status, away: { team, score }, home: { team, score } }
              Shown under the team and city everywhere the stadium is listed.
@@ -270,6 +273,10 @@ const STADIUMS = [
         "I'd recommend a Phillies game here without hesitation, especially with friends on a summer day. Eat at the restaurants outside or grab something in the ballpark, and take your time with the attractions — there are more of them here than at most places.",
     },
     info: { capacity: "42,901", opened: 2004, city: "Philadelphia, PA", surface: "Natural grass", roof: "Open air" },
+    photo: {
+      src: "assets/photos/citizens-bank-park.jpg",
+      caption: "(photo I took pre game at White Sox vs Phillies)",
+    },
     game: { date: "Jun 7, 2026", status: "Final",
              away: { team: "White Sox", score: 5 },
              home: { team: "Phillies", score: 9 } },

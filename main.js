@@ -424,6 +424,14 @@ function renderStadiumPage() {
         </div>
 
         <div class="lg:text-right shrink-0">
+          ${stadium.photo ? `
+            <figure class="venue-photo">
+              <img src="${esc(stadium.photo.src)}"
+                   alt="${esc(stadium.name)}"
+                   onerror="this.closest('.venue-photo').remove()">
+              ${stadium.photo.caption
+                ? `<figcaption>${esc(stadium.photo.caption)}</figcaption>` : ""}
+            </figure>` : ""}
           <div class="eyebrow">Overall score</div>
           <div class="score-hero mt-2" style="color:var(--accent)">${fmtScore(score)}</div>
           <div class="text-sm mt-2" style="color:var(--ink-faint)">

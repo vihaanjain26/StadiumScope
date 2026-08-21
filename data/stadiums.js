@@ -96,7 +96,10 @@ const STADIUMS = [
         "Fans were friendly and funny all game without ever crossing the line",
         "A big stadium with plenty of seating",
       ],
-      disliked: [],
+      disliked: [
+        "The concourses are tight, so getting anywhere at a busy moment is a struggle",
+        "Not much to do outside the stadium",
+      ],
       verdict: "",
     },
     info: { capacity: "68,500", opened: 2014, city: "Santa Clara, CA", surface: "Natural grass", roof: "Open air" },

@@ -392,7 +392,7 @@ const STADIUMS = [
       overview: "",
       liked: [
         "Penn Station is connected to the arena, so getting there is as easy as it gets",
-        "One of the best crowds I've seen in American sport — locked in the whole game",
+        "One of the best crowds I've seen in American sports — locked in the whole game",
         "It has a charm to it as the world's most famous arena, the organ included",
         "Plenty to do around the arena",
       ],

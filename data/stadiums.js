@@ -401,7 +401,8 @@ const STADIUMS = [
         "About 70% full for a Friday night, and a good chunk of that was away fans",
         "Outside the arena felt a little sketchy — the neighbourhood is questionable",
       ],
-      verdict: "",
+      verdict:
+        "I wouldn't come to Barclays Center until the Nets are worth watching. The atmosphere was basically non-existent because the team gave the crowd nothing to react to, and that wastes the arena — the building itself deserves better.",
     },
     info: { capacity: "17,732", opened: 2012, city: "Brooklyn, NY", surface: "Hardwood", roof: "Indoor" },
     game: { date: "Jan 9, 2026", status: "Final",

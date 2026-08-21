@@ -266,7 +266,8 @@ const STADIUMS = [
         "The crowd drifted out of the game at times, which is what keeps the atmosphere score where it is. October would be a different story",
         "The surroundings could be better. Two other venues sit right next to the ballpark, so it gets chaotic when more than one of them has an event on",
       ],
-      verdict: "",
+      verdict:
+        "I'd recommend a Phillies game here without hesitation, especially with friends on a summer day. Eat at the restaurants outside or grab something in the ballpark, and take your time with the attractions — there are more of them here than at most places.",
     },
     info: { capacity: "42,901", opened: 2004, city: "Philadelphia, PA", surface: "Natural grass", roof: "Open air" },
     game: { date: "Jun 7, 2026", status: "Final",

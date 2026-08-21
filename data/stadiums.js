@@ -200,7 +200,11 @@ const STADIUMS = [
         "The food tastes very good",
         "A good amount of legroom",
       ],
-      disliked: [],
+      disliked: [
+        "The crowd turned on the team at times, which is understandable but wears on you",
+        "No single standout feature that makes the stadium its own",
+        "The crowd gave up in the third quarter and a lot of people left early",
+      ],
       verdict: "",
     },
     info: { capacity: "82,500", opened: 2010, city: "East Rutherford, NJ", surface: "Artificial turf", roof: "Open air" },

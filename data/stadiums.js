@@ -194,7 +194,12 @@ const STADIUMS = [
     ratings: { atmosphere: 8.2, stadium: 7.8, uniqueness: 7.9, gameplay: 8.15 },
     review: {
       overview: "",
-      liked: [],
+      liked: [
+        "A big stadium that holds a lot of fans",
+        "The tailgating scene is very good",
+        "The food tastes very good",
+        "A good amount of legroom",
+      ],
       disliked: [],
       verdict: "",
     },

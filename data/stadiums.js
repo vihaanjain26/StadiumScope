@@ -346,7 +346,10 @@ const STADIUMS = [
         "No real problems with the stadium itself — solid all around",
         "The surrounding area is a step up from the Bronx",
       ],
-      disliked: [],
+      disliked: [
+        "No real standout feature beyond the apple in center field",
+        "Not a lot to do around the stadium",
+      ],
       verdict: "",
     },
     info: { capacity: "41,922", opened: 2009, city: "Queens, NY", surface: "Natural grass", roof: "Open air" },

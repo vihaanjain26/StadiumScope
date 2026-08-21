@@ -262,7 +262,10 @@ const STADIUMS = [
         "Fans at a Sunday game in June were calm and friendly, though I can't say whether that holds in October",
         "A unique ballpark with a lot of attractions and good spots to take photos",
       ],
-      disliked: [],
+      disliked: [
+        "The crowd drifted out of the game at times, which is what keeps the atmosphere score where it is. October would be a different story",
+        "The surroundings could be better. Two other venues sit right next to the ballpark, so it gets chaotic when more than one of them has an event on",
+      ],
       verdict: "",
     },
     info: { capacity: "42,901", opened: 2004, city: "Philadelphia, PA", surface: "Natural grass", roof: "Open air" },

@@ -82,7 +82,7 @@ const STADIUMS = [
         "The stadium can get very chaotic",
       ],
       verdict:
-        "I'd recommend AT&T Stadium. It's the kind of day you remember — you walk out with a rally towel having watched a game in one of the most beautiful stadiums in sport.",
+        "I'd recommend AT&T Stadium. It's the kind of day you remember — you walk out with a rally towel having watched a game in one of the most beautiful stadiums in sports.",
     },
     info: { capacity: "80,000", opened: 2009, city: "Arlington, TX", surface: "Artificial turf", roof: "Retractable" },
     game: { date: "Nov 25, 2021", status: "Final/OT",

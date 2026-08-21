@@ -254,7 +254,14 @@ const STADIUMS = [
     ratings: { atmosphere: 8.2, stadium: 8.8, uniqueness: 8.5, gameplay: 8.2 },
     review: {
       overview: "",
-      liked: [],
+      liked: [
+        "Plenty to do outside the ballpark, with bars and restaurants within walking distance",
+        "A good one to go to with friends rather than on your own",
+        "Just as much going on inside, including a lot of team shops",
+        "The food is genuinely good. Get the ice cream cup",
+        "Fans at a Sunday game in June were calm and friendly, though I can't say whether that holds in October",
+        "A unique ballpark with a lot of attractions and good spots to take photos",
+      ],
       disliked: [],
       verdict: "",
     },

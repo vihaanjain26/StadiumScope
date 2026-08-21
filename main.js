@@ -429,7 +429,7 @@ function renderStadiumPage() {
           <div class="text-sm mt-2" style="color:var(--ink-faint)">
             Average of ${RATING_CATEGORIES.length} categories, out of 10
           </div>
-          <div class="text-sm mt-1" style="color:var(--ink-faint)">
+          <div class="text-sm mt-1 font-bold" style="color:var(--ink)">
             (stadium category rankings below)
           </div>
         </div>

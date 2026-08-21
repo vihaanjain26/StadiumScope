@@ -71,9 +71,18 @@ const STADIUMS = [
     ratings: { atmosphere: 8.5, stadium: 8.85, uniqueness: 8.75, gameplay: 8.85 },
     review: {
       overview: "",
-      liked: [],
-      disliked: [],
-      verdict: "",
+      liked: [
+        "Plenty to do outside the stadium, including a mini football field and places to hang out",
+        "A competitive Thanksgiving game, which made it a one-off in itself",
+        "The stadium is designed very well, with a huge jumbotron",
+        "They handed out a rally towel, which lifted the atmosphere",
+      ],
+      disliked: [
+        "The away fans — Raiders fans — were pretty annoying all game",
+        "The stadium can get very chaotic",
+      ],
+      verdict:
+        "I'd recommend AT&T Stadium. It's the kind of day you remember — you walk out with a rally towel having watched a game in one of the most beautiful stadiums in sport.",
     },
     info: { capacity: "80,000", opened: 2009, city: "Arlington, TX", surface: "Artificial turf", roof: "Retractable" },
     game: { date: "Nov 25, 2021", status: "Final/OT",

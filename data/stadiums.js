@@ -322,7 +322,8 @@ const STADIUMS = [
         "Getting out after the game is a hassle",
         "The design isn't the best in baseball, though it is a classic",
       ],
-      verdict: "",
+      verdict:
+        "Any baseball fan should visit Yankee Stadium at least once for the history alone — it's a classic. Just go in knowing the surrounding area isn't the best part of the trip.",
     },
     info: { capacity: "46,537", opened: 2009, city: "Bronx, NY", surface: "Natural grass", roof: "Open air" },
     game: { date: "Mar 30, 2025", status: "Final",

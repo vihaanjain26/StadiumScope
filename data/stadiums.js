@@ -428,8 +428,10 @@ const STADIUMS = [
         "Around 75% of the arena turned up late, myself included — I was coming from a Cardinals game",
         "The fans were never especially loud",
         "The upper section is very steep, which can ruin it for a lot of people",
+        "No major unique feature in this arena",
       ],
-      verdict: "",
+      verdict:
+        "I wouldn't recommend this arena to most people. There's no major attraction that sets it apart from anywhere else, and the fans aren't top notch either.",
     },
     info: { capacity: "17,071", opened: 1992, city: "Phoenix, AZ", surface: "Hardwood", roof: "Indoor" },
     game: { date: "Nov 10, 2024", status: "Final/OT",

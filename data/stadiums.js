@@ -350,7 +350,8 @@ const STADIUMS = [
         "No real standout feature beyond the apple in center field",
         "Not a lot to do around the stadium",
       ],
-      verdict: "",
+      verdict:
+        "I wouldn't go out of my way for Citi Field. There isn't much to do at the ballpark itself, and it has no real unique factor next to somewhere like Yankee Stadium.",
     },
     info: { capacity: "41,922", opened: 2009, city: "Queens, NY", surface: "Natural grass", roof: "Open air" },
     game: { date: "May 25, 2025", status: "Final",

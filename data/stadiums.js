@@ -316,7 +316,12 @@ const STADIUMS = [
         "A lot here you won't find anywhere else, the hall of fame museum included",
         "Good food options all the way around the stadium",
       ],
-      disliked: [],
+      disliked: [
+        "The surrounding area in the Bronx has its question marks",
+        "Not many good parking options",
+        "Getting out after the game is a hassle",
+        "The design isn't the best in baseball, though it is a classic",
+      ],
       verdict: "",
     },
     info: { capacity: "46,537", opened: 2009, city: "Bronx, NY", surface: "Natural grass", roof: "Open air" },

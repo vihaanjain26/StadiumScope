@@ -396,7 +396,11 @@ const STADIUMS = [
         "Plenty to do in the arena, with a lot of restaurants",
         "Connected to a subway station right outside, so getting there by train is easy",
       ],
-      disliked: [],
+      disliked: [
+        "The fans were never into the game, which is understandable given the team",
+        "About 70% full for a Friday night, and a good chunk of that was away fans",
+        "Outside the arena felt a little sketchy — the neighbourhood is questionable",
+      ],
       verdict: "",
     },
     info: { capacity: "17,732", opened: 2012, city: "Brooklyn, NY", surface: "Hardwood", roof: "Indoor" },

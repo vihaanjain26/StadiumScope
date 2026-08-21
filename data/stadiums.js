@@ -205,7 +205,8 @@ const STADIUMS = [
         "No single standout feature that makes the stadium its own",
         "The crowd gave up in the third quarter and a lot of people left early",
       ],
-      verdict: "",
+      verdict:
+        "If you're on the fence about a Jets game at MetLife, I'd lean toward skipping it, especially in the cold — which is most of their schedule. There's no wow factor here the way there is at SoFi or AT&T, and the fans aren't the best either.",
     },
     info: { capacity: "82,500", opened: 2010, city: "East Rutherford, NJ", surface: "Artificial turf", roof: "Open air" },
     game: { date: "Nov 24, 2023", status: "Final",

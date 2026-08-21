@@ -369,7 +369,7 @@ const STADIUMS = [
     league: "NBA",
     rank: 1,
     brand: { abbr: "NYK", primary: "#006BB6", secondary: "#F58426" },
-    ratings: { atmosphere: 8.6, stadium: 8.7, uniqueness: 8.75, gameplay: 8.15 },
+    ratings: { atmosphere: 8.8, stadium: 8.7, uniqueness: 8.75, gameplay: 8.3 },
     review: {
       overview: "",
       liked: [
@@ -378,8 +378,11 @@ const STADIUMS = [
         "It has a charm to it as the world's most famous arena, the organ included",
         "Plenty to do around the arena",
       ],
-      disliked: [],
-      verdict: "",
+      disliked: [
+        "Tickets to a regular season Knicks game are very expensive",
+      ],
+      verdict:
+        "Go to a game at MSG whether you're a Knicks fan or not. It's the world's most famous arena and there's plenty to do inside it — just know the tickets are very expensive.",
     },
     info: { capacity: "19,812", opened: 1968, city: "New York, NY", surface: "Hardwood", roof: "Indoor" },
     game: { date: "Jan 15, 2024", status: "Final",

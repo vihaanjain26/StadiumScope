@@ -419,7 +419,11 @@ const STADIUMS = [
     ratings: { atmosphere: 7.7, stadium: 8.4, uniqueness: 8.1, gameplay: 8.25 },
     review: {
       overview: "",
-      liked: [],
+      liked: [
+        "A beautiful arena from the outside",
+        "A lot of good restaurants inside the arena",
+        "The game itself was a good one, which helped the whole experience",
+      ],
       disliked: [],
       verdict: "",
     },

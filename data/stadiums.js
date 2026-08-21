@@ -372,7 +372,12 @@ const STADIUMS = [
     ratings: { atmosphere: 8.6, stadium: 8.7, uniqueness: 8.75, gameplay: 8.15 },
     review: {
       overview: "",
-      liked: [],
+      liked: [
+        "Penn Station is connected to the arena, so getting there is as easy as it gets",
+        "One of the best crowds I've seen in American sport — locked in the whole game",
+        "It has a charm to it as the world's most famous arena, the organ included",
+        "Plenty to do around the arena",
+      ],
       disliked: [],
       verdict: "",
     },

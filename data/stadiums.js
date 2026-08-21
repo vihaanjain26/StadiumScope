@@ -337,7 +337,7 @@ const STADIUMS = [
     league: "MLB",
     rank: 3,
     brand: { abbr: "NYM", primary: "#002D72", secondary: "#FF5910" },
-    ratings: { atmosphere: 8.3, stadium: 8.4, uniqueness: 8.1, gameplay: 7.9 },
+    ratings: { atmosphere: 8.3, stadium: 8.2, uniqueness: 8, gameplay: 7.9 },
     review: {
       overview: "",
       liked: [],

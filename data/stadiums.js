@@ -90,7 +90,12 @@ const STADIUMS = [
     ratings: { atmosphere: 8.8, stadium: 8.6, uniqueness: 8.4, gameplay: 8.7 },
     review: {
       overview: "",
-      liked: [],
+      liked: [
+        "The crowd stayed in it even with the 49ers trailing, and they helped spark the comeback",
+        "Easy to get into, with the bridge running straight from the parking lot to the gates",
+        "Fans were friendly and funny all game without ever crossing the line",
+        "A big stadium with plenty of seating",
+      ],
       disliked: [],
       verdict: "",
     },

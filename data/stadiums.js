@@ -424,7 +424,11 @@ const STADIUMS = [
         "A lot of good restaurants inside the arena",
         "The game itself was a good one, which helped the whole experience",
       ],
-      disliked: [],
+      disliked: [
+        "Around 75% of the arena turned up late, myself included — I was coming from a Cardinals game",
+        "The fans were never especially loud",
+        "The upper section is very steep, which can ruin it for a lot of people",
+      ],
       verdict: "",
     },
     info: { capacity: "17,071", opened: 1992, city: "Phoenix, AZ", surface: "Hardwood", roof: "Indoor" },

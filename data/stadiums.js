@@ -340,7 +340,12 @@ const STADIUMS = [
     ratings: { atmosphere: 8.3, stadium: 8.2, uniqueness: 8, gameplay: 7.9 },
     review: {
       overview: "",
-      liked: [],
+      liked: [
+        "Plenty of good food options around Citi Field, and the helmet ice cream is awesome",
+        "The crowd got loud when the big moments came",
+        "No real problems with the stadium itself — solid all around",
+        "The surrounding area is a step up from the Bronx",
+      ],
       disliked: [],
       verdict: "",
     },

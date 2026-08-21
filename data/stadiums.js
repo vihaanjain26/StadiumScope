@@ -223,9 +223,18 @@ const STADIUMS = [
     ratings: { atmosphere: 7.6, stadium: 7.7, uniqueness: 7.5, gameplay: 7.75 },
     review: {
       overview: "",
-      liked: [],
-      disliked: [],
-      verdict: "",
+      liked: [
+        "A big stadium that holds a lot of fans",
+        "The food was pretty good",
+        "Lots of parking options",
+      ],
+      disliked: [
+        "Rams fans took over the stadium from the second quarter once the Rams took control",
+        "The stadium itself is pretty boring",
+        "The game was a blowout from the start",
+      ],
+      verdict:
+        "I wouldn't go to a Giants game at MetLife. There's no wow factor, the stadium gets cold enough to ruin the day, and the crowd loses its energy as soon as the team plays badly.",
     },
     info: { capacity: "82,500", opened: 2010, city: "East Rutherford, NJ", surface: "Artificial turf", roof: "Open air" },
     game: { date: "Oct 17, 2021", status: "Final",

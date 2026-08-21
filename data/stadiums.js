@@ -391,7 +391,11 @@ const STADIUMS = [
     ratings: { atmosphere: 7.6, stadium: 8.8, uniqueness: 8.5, gameplay: 7.8 },
     review: {
       overview: "",
-      liked: [],
+      liked: [
+        "A big, beautiful arena from the outside and the inside",
+        "Plenty to do in the arena, with a lot of restaurants",
+        "Connected to a subway station right outside, so getting there by train is easy",
+      ],
       disliked: [],
       verdict: "",
     },

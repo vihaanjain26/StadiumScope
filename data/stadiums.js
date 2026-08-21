@@ -310,7 +310,12 @@ const STADIUMS = [
     ratings: { atmosphere: 8.7, stadium: 7.8, uniqueness: 8.5, gameplay: 8.4 },
     review: {
       overview: "",
-      liked: [],
+      liked: [
+        "The crowd for a late March game was loud and locked into every pitch",
+        "Plenty of team shops around the ballpark if you want Yankees merch",
+        "A lot here you won't find anywhere else, the hall of fame museum included",
+        "Good food options all the way around the stadium",
+      ],
       disliked: [],
       verdict: "",
     },

@@ -377,6 +377,21 @@ const STADIUMS = [
              home: { team: "Mets", score: 3 } },
   },
 
+  /* --- Booked, not yet visited. ------------------------------------------ */
+  {
+    id: "coors-field",
+    name: "Coors Field",
+    team: "Colorado Rockies",
+    league: "MLB",
+    rank: null,
+    status: "upcoming",
+    visit: "Sep 19, 2026 · vs Mariners",
+    brand: { abbr: "COL", primary: "#33006F", secondary: "#C4CED4" },
+    ratings: null,
+    review: null,
+    info: { capacity: "50,144", opened: 1995, city: "Denver, CO", surface: "Natural grass", roof: "Open air" },
+  },
+
   /* ------------------------------------------------------------------ NBA --
      Real ratings from the "going to all NBA stadiums" project. Same rule as
      the NFL list: one entry per team, and reviews stay blank until written. */

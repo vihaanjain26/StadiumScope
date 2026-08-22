@@ -155,9 +155,18 @@ const STADIUMS = [
     ratings: { atmosphere: 8.45, stadium: 8.4, uniqueness: 8.5, gameplay: 8.45 },
     review: {
       overview: "",
-      liked: [],
-      disliked: [],
-      verdict: "",
+      liked: [
+        "Restaurants, team shops and bars outside the stadium for every kind of fan, before and after the game",
+        "Plenty of parking options around Foxborough",
+        "The stadium has a unique feel, with the signature lighthouse",
+        "The fans were friendly and into it all game",
+      ],
+      disliked: [
+        "There's not much protection from the cold, so a chilly day can affect the whole experience",
+        "The food inside is bland, the pizza especially — the food outside the stadium is much better",
+      ],
+      verdict:
+        "I'd recommend Gillette Stadium, but aim for a September or October game, and make time for Patriot Place before or after.",
     },
     info: { capacity: "64,628", opened: 2002, city: "Foxborough, MA", surface: "Artificial turf", roof: "Open air" },
     game: { date: "Oct 27, 2024", status: "Final",

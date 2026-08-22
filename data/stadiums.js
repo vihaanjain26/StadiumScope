@@ -183,9 +183,19 @@ const STADIUMS = [
     ratings: { atmosphere: 8.3, stadium: 8.7, uniqueness: 8.4, gameplay: 8.35 },
     review: {
       overview: "",
-      liked: [],
-      disliked: [],
-      verdict: "",
+      liked: [
+        "A very nice stadium from the outside and the inside",
+        "The fans were loud this game and helped the Cardinals a lot",
+        "Arizona is usually hot, so the roof makes a real difference",
+        "Plenty of good restaurants and bars to hang out at before the game",
+      ],
+      disliked: [
+        "The crowd lost a lot of its energy in the second half once the game stopped being competitive",
+        "No major unique factor",
+        "Upper deck seats can struggle to follow the game because of the sheer scale of the dome",
+      ],
+      verdict:
+        "I wouldn't recommend a Cardinals game until they're good again. Cardinals fans usually aren't that energetic — they were this time because the team was solid that season — and there's nothing about this stadium that stands out.",
     },
     info: { capacity: "63,400", opened: 2006, city: "Glendale, AZ", surface: "Natural grass (roll-out)", roof: "Retractable" },
     game: { date: "Nov 10, 2024", status: "Final",

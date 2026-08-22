@@ -250,13 +250,61 @@ function renderOverviewTable(container) {
 }
 
 /* ---- 3c. Table 2: the master ranking across all three leagues ------------ */
+/* Which column the master table is sorted by, and which way. Clicking a
+   header changes this and the table re-renders. */
+const masterSort = { key: "overall", dir: "desc" };
+
+/* The value a given column sorts on. Text columns return a string, everything
+   else a number, and the comparator below handles both. */
+function sortValue(stadium, key) {
+  if (key === "overall") return rawScore(stadium);
+  if (key === "name")    return stadium.name.toLowerCase();
+  if (key === "team")    return stadium.team.toLowerCase();
+  if (key === "league")  return stadium.league;
+  return Number(stadium.ratings[key]) || 0;   // one of the rating categories
+}
+
+function sortedForMaster(list) {
+  const sign = masterSort.dir === "asc" ? 1 : -1;
+  return [...list].sort((a, b) => {
+    const va = sortValue(a, masterSort.key);
+    const vb = sortValue(b, masterSort.key);
+    const cmp = typeof va === "string" ? va.localeCompare(vb) : va - vb;
+    /* Ties fall back to the stadium name so the order never jumps around. */
+    return cmp * sign || a.name.localeCompare(b.name);
+  });
+}
+
 function renderMasterTable(container) {
   if (!container) return;
 
-  const rows = sortedByScore(RATED())
-    .map((s, i) => `
+  /* The # column always shows the venue's place in the overall ranking, not
+     its position in the current sort — so a stadium keeps the same number
+     however you slice the table. */
+  const overallOrder = sortedByScore(RATED());
+  const overallRank = new Map(overallOrder.map((s, i) => [s.id, i + 1]));
+
+  const columns = [
+    { key: "name",    label: "Stadium", type: "text" },
+    { key: "team",    label: "Team",    type: "text" },
+    { key: "league",  label: "League",  type: "text" },
+    ...RATING_CATEGORIES.map((c) => ({ key: c.key, label: c.label.slice(0, 4), type: "num" })),
+    { key: "overall", label: "Overall", type: "num" },
+  ];
+
+  const arrow = (key) =>
+    masterSort.key === key ? (masterSort.dir === "asc" ? " ↑" : " ↓") : "";
+
+  const headers = columns.map((c) => `
+    <th class="sortable ${c.type === "num" ? "cell-num" : ""} ${masterSort.key === c.key ? "is-sorted" : ""}"
+        data-sort="${c.key}"
+        aria-sort="${masterSort.key === c.key ? (masterSort.dir === "asc" ? "ascending" : "descending") : "none"}"
+        title="Sort by ${c.label}">${c.label}${arrow(c.key)}</th>`).join("");
+
+  const rows = sortedForMaster(RATED())
+    .map((s) => `
       <tr>
-        <td class="cell-rank">${i + 1}</td>
+        <td class="cell-rank">${overallRank.get(s.id)}</td>
         <td>
           <a class="flex items-center gap-3" href="stadium.html?id=${esc(s.id)}">
             ${makeLogo(s, "sm")}
@@ -276,16 +324,27 @@ function renderMasterTable(container) {
     <table class="data" style="min-width:820px">
       <thead>
         <tr>
-          <th>#</th>
-          <th>Stadium</th>
-          <th>Team</th>
-          <th>League</th>
-          ${RATING_CATEGORIES.map((c) => `<th class="cell-num">${c.label.slice(0, 4)}</th>`).join("")}
-          <th class="cell-num">Overall</th>
+          <th title="Place in the overall ranking">#</th>
+          ${headers}
         </tr>
       </thead>
       <tbody>${rows}</tbody>
     </table>`;
+
+  /* Click a header to sort by it. Same column again flips the direction;
+     a new column starts high-to-low for numbers, A–Z for text. */
+  container.querySelectorAll("th[data-sort]").forEach((th) => {
+    th.addEventListener("click", () => {
+      const key = th.dataset.sort;
+      if (masterSort.key === key) {
+        masterSort.dir = masterSort.dir === "asc" ? "desc" : "asc";
+      } else {
+        masterSort.key = key;
+        masterSort.dir = ["name", "team", "league"].includes(key) ? "asc" : "desc";
+      }
+      renderMasterTable(container);
+    });
+  });
 }
 
 /* ---- 3d. Table 3: one league's visited venues, with the details ---------- */

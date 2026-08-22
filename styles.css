@@ -365,6 +365,15 @@ table.data thead th {
   white-space: nowrap;
   background: var(--paper);
 }
+/* Clickable headers on the master table. */
+table.data thead th.sortable {
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.15s ease;
+}
+table.data thead th.sortable:hover { color: var(--ink); }
+table.data thead th.is-sorted { color: var(--accent); }
+
 table.data tbody td {
   padding: 15px 14px;
   border-bottom: var(--hair);

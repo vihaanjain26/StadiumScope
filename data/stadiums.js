@@ -127,9 +127,18 @@ const STADIUMS = [
     ratings: { atmosphere: 8, stadium: 8.9, uniqueness: 8.85, gameplay: 8.25 },
     review: {
       overview: "",
-      liked: [],
-      disliked: [],
-      verdict: "",
+      liked: [
+        "A state of the art stadium, genuinely one of a kind",
+        "Great spot for photos outside by the big SoFi sign with the water behind it",
+        "Parking outside the stadium wasn't bad at all",
+        "The video board is amazing — it's basically an infinity screen",
+      ],
+      disliked: [
+        "Rams fans aren't as loud as other fanbases, and most games (not this one) the majority of the crowd is opposing fans — that's the main reason SoFi isn't higher",
+        "LA traffic getting in and out of the stadium can be very bad",
+      ],
+      verdict:
+        "I'd definitely visit SoFi, especially if your team is the one playing in LA — you'll have plenty of people to cheer with. It's a beautiful, one of a kind stadium, and the video board alone is worth seeing.",
     },
     info: { capacity: "70,240", opened: 2020, city: "Inglewood, CA", surface: "Artificial turf", roof: "Fixed canopy, open sides" },
     game: { date: "Nov 13, 2022", status: "Final",

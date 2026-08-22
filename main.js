@@ -744,7 +744,7 @@ function renderLeagueTiles(container, includeAll = false) {
           ${rated.length} venues · avg ${fmtScore(average)}
         </p>
         <div class="mt-4 pt-4" style="border-top:1px solid var(--rule)">
-          <span class="eyebrow">The master ranking</span>
+          <span class="eyebrow">Sortable master ranking</span>
           <span class="flex items-center gap-2.5 mt-2">
             ${makeLogo(best, "sm")}
             <span class="font-semibold text-sm">${esc(best.name)}</span>

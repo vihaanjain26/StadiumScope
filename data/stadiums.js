@@ -193,9 +193,17 @@ const STADIUMS = [
     ratings: { atmosphere: 8.3, stadium: 8.3, uniqueness: 8.25, gameplay: 7.75 },
     review: {
       overview: "",
-      liked: [],
-      disliked: [],
-      verdict: "",
+      liked: [
+        "The fan experience is great, with a lot of tailgating spots",
+        "Fans stayed passionate all game, even through the blowout",
+        "Two giant video screens at opposite end zones, which helped a lot during the game",
+      ],
+      disliked: [
+        "The Baltimore area itself isn't the best, and getting out after the game was a struggle",
+        "No unique factor that separates this stadium from any other",
+      ],
+      verdict:
+        "I'd recommend a Ravens game. The rating isn't higher mainly because the Ravens played horribly, but it's a great day out for football families and the tailgating is a big part of that.",
     },
     info: { capacity: "71,008", opened: 1998, city: "Baltimore, MD", surface: "Natural grass", roof: "Open air" },
     game: { date: "Oct 5, 2025", status: "Final",

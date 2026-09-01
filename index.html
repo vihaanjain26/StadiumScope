@@ -42,7 +42,10 @@
 
   <!-- ===================================================== HERO =========== -->
   <header class="shell" style="padding-block:clamp(64px,11vw,132px) clamp(48px,7vw,88px)">
-    <p class="eyebrow reveal hero-in">Est. 2026 <span class="dot">·</span> 14 venues scored <span class="dot">·</span> 2 booked</p>
+    <!-- Counts are filled in by main.js so they can't go stale -->
+    <p class="eyebrow reveal hero-in">Est. 2026 <span class="dot">·</span>
+      <span data-count-rated>14</span> venues scored <span class="dot">·</span>
+      <span data-count-booked>3</span> booked</p>
 
     <!-- Headline and portrait sit side by side on a wide screen; on a phone the
          photo drops underneath the headline. -->

@@ -873,6 +873,16 @@ document.addEventListener("DOMContentLoaded", () => {
     renderStadiumPage();
   }
 
+  /* Fill in any venue counts written into the page copy, so a line like
+     "14 venues scored · 3 booked" tracks the data instead of being typed. */
+  const ratedCount = RATED().length;
+  document.querySelectorAll("[data-count-rated]").forEach((n) => {
+    n.textContent = ratedCount;
+  });
+  document.querySelectorAll("[data-count-booked]").forEach((n) => {
+    n.textContent = STADIUMS.length - ratedCount;
+  });
+
   /* Stamp the year in the footer so it never goes stale. */
   document.querySelectorAll("[data-year]").forEach((n) => {
     n.textContent = new Date().getFullYear();

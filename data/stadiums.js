@@ -387,7 +387,7 @@ const STADIUMS = [
     name: "Yankee Stadium",
     team: "New York Yankees",
     league: "MLB",
-    rank: 2,
+    rank: 3,
     brand: { abbr: "NYY", primary: "#132448", secondary: "#C4CED4" },
     ratings: { atmosphere: 8.7, stadium: 7.8, uniqueness: 8.5, gameplay: 8.4 },
     review: {
@@ -421,7 +421,7 @@ const STADIUMS = [
     name: "Citi Field",
     team: "New York Mets",
     league: "MLB",
-    rank: 3,
+    rank: 4,
     brand: { abbr: "NYM", primary: "#002D72", secondary: "#FF5910" },
     ratings: { atmosphere: 8.3, stadium: 8.2, uniqueness: 8, gameplay: 7.9 },
     review: {
@@ -449,24 +449,25 @@ const STADIUMS = [
              home: { team: "Mets", score: 3 } },
   },
 
-  /* --- Booked, not yet visited. ------------------------------------------ */
   {
     id: "coors-field",
     name: "Coors Field",
     team: "Colorado Rockies",
     league: "MLB",
-    rank: null,
-    status: "upcoming",
-    visit: "Sep 19, 2026 · vs Mariners",
+    rank: 2,
     brand: { abbr: "COL", primary: "#33006F", secondary: "#C4CED4" },
-    ratings: null,
-    review: null,
+    ratings: { atmosphere: 8.4, stadium: 8.8, uniqueness: 8.2, gameplay: 8.25 },
+    review: {
+      overview: "",
+      liked: [],
+      disliked: [],
+      verdict: "",
+    },
     info: { capacity: "50,144", opened: 1995, city: "Denver, CO", surface: "Natural grass", roof: "Open air" },
     game: { date: "Sep 19, 2026", status: "Final",
              away: { team: "Mariners", score: 3 },
              home: { team: "Rockies", score: 5 } },
   },
-
   /* ------------------------------------------------------------------ NBA --
      Real ratings from the "going to all NBA stadiums" project. Same rule as
      the NFL list: one entry per team, and reviews stay blank until written. */

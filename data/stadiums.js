@@ -470,7 +470,8 @@ const STADIUMS = [
         "The food is extremely overpriced. I paid 25 bucks for a pizza",
         "Not a lot of variety at the concession stands, mostly just pizza, pretzels and beer",
       ],
-      verdict: "",
+      verdict:
+        "I'd consider a game at Coors Field. It's a unique and beautiful ballpark, and you get that without a crazy overload of fans.",
     },
     info: { capacity: "50,144", opened: 1995, city: "Denver, CO", surface: "Natural grass", roof: "Open air" },
     game: { date: "Sep 19, 2026", status: "Final",

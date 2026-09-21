@@ -474,6 +474,10 @@ const STADIUMS = [
         "I'd consider a game at Coors Field. It's a unique and beautiful ballpark, and you get that without a crazy overload of fans.",
     },
     info: { capacity: "50,144", opened: 1995, city: "Denver, CO", surface: "Natural grass", roof: "Open air" },
+    photo: {
+      src: "assets/photos/coors-field.jpg",
+      caption: "(photo I took at Mariners vs Rockies)",
+    },
     game: { date: "Sep 19, 2026", status: "Final",
              away: { team: "Mariners", score: 3 },
              home: { team: "Rockies", score: 5 } },

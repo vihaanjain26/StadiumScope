@@ -149,6 +149,10 @@ const STADIUMS = [
         "I'd definitely visit SoFi, especially if your team is the one playing in LA — you'll have plenty of people to cheer with. It's a beautiful, one of a kind stadium, and the video board alone is worth seeing.",
     },
     info: { capacity: "70,240", opened: 2020, city: "Inglewood, CA", surface: "Artificial turf", roof: "Fixed canopy, open sides" },
+    photo: {
+      src: "assets/photos/sofi-stadium.jpg",
+      caption: "(photo I took at Cardinals vs Rams)",
+    },
     game: { date: "Nov 13, 2022", status: "Final",
              away: { team: "Cardinals", score: 27 },
              home: { team: "Rams", score: 17 } },

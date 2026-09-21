@@ -73,6 +73,10 @@ const STADIUMS = [
     ratings: { atmosphere: 9.45, stadium: 8.7, uniqueness: 8.4, gameplay: 8.45 },
     review: null,
     info: { capacity: "76,125", opened: 2001, city: "Denver, CO", surface: "Natural grass", roof: "Open air" },
+    photo: {
+      src: "assets/photos/empower-field.jpg",
+      caption: "(photo I took during the anthem at Jaguars vs Broncos)",
+    },
     game: {
       date: "Sep 20, 2026",
       status: "Final",

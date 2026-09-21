@@ -462,6 +462,9 @@ const STADIUMS = [
     ratings: null,
     review: null,
     info: { capacity: "50,144", opened: 1995, city: "Denver, CO", surface: "Natural grass", roof: "Open air" },
+    game: { date: "Sep 19, 2026", status: "Final",
+             away: { team: "Mariners", score: 3 },
+             home: { team: "Rockies", score: 5 } },
   },
 
   /* ------------------------------------------------------------------ NBA --

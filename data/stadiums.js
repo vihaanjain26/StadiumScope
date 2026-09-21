@@ -459,7 +459,12 @@ const STADIUMS = [
     ratings: { atmosphere: 8.4, stadium: 8.8, uniqueness: 8.2, gameplay: 8.25 },
     review: {
       overview: "",
-      liked: [],
+      liked: [
+        "For an unimportant regular season game the fans showed up, and they were louder than I expected given how bad the Rockies are",
+        "The ballpark is beautiful, with the trees and fountains out in center field",
+        "The food tasted pretty good",
+        "The concourse wasn't packed, and it wasn't tight or congested either",
+      ],
       disliked: [],
       verdict: "",
     },

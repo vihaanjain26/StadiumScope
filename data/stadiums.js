@@ -83,7 +83,8 @@ const STADIUMS = [
         "It isn't in the best area. There are no restaurants outside the parking lot and it's a slightly sketchy part of Denver",
         "The food didn't taste good and it was expensive, 12 bucks for one cold slice of pizza",
       ],
-      verdict: "",
+      verdict:
+        "I'd definitely recommend going to a Broncos game for the fans, the traditions and the football environment. One note: bring headphones if you can't handle loud noises, because it's going to be loud.",
     },
     info: { capacity: "76,125", opened: 2001, city: "Denver, CO", surface: "Natural grass", roof: "Open air" },
     photo: {

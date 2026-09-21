@@ -64,11 +64,28 @@ const STADIUMS = [
      Review text is left blank on purpose — write your own in the empty
      strings/arrays below. The ratings are already the real ones. */
   {
+    id: "empower-field",
+    name: "Empower Field at Mile High",
+    team: "Denver Broncos",
+    league: "NFL",
+    rank: 1,
+    brand: { abbr: "DEN", primary: "#FB4F14", secondary: "#002244" },
+    ratings: { atmosphere: 9.45, stadium: 8.7, uniqueness: 8.4, gameplay: 8.45 },
+    review: null,
+    info: { capacity: "76,125", opened: 2001, city: "Denver, CO", surface: "Natural grass", roof: "Open air" },
+    game: {
+      date: "Sep 20, 2026",
+      status: "Final",
+      away: { team: "Jaguars", score: 13 },
+      home: { team: "Broncos", score: 20 },
+    },
+  },
+  {
     id: "att-stadium",
     name: "AT&T Stadium",
     team: "Dallas Cowboys",
     league: "NFL",
-    rank: 1,
+    rank: 2,
     brand: { abbr: "DAL", primary: "#041E42", secondary: "#869397" },
     ratings: { atmosphere: 8.5, stadium: 8.85, uniqueness: 8.75, gameplay: 8.85 },
     review: {
@@ -100,7 +117,7 @@ const STADIUMS = [
     name: "Levi's Stadium",
     team: "San Francisco 49ers",
     league: "NFL",
-    rank: 2,
+    rank: 3,
     brand: { abbr: "SF", primary: "#AA0000", secondary: "#B3995D" },
     ratings: { atmosphere: 8.8, stadium: 8.6, uniqueness: 8.4, gameplay: 8.7 },
     review: {
@@ -132,7 +149,7 @@ const STADIUMS = [
     name: "SoFi Stadium",
     team: "Los Angeles Rams",
     league: "NFL",
-    rank: 3,
+    rank: 4,
     brand: { abbr: "LAR", primary: "#003594", secondary: "#FFA300" },
     ratings: { atmosphere: 8, stadium: 8.9, uniqueness: 8.85, gameplay: 8.25 },
     review: {
@@ -164,7 +181,7 @@ const STADIUMS = [
     name: "Gillette Stadium",
     team: "New England Patriots",
     league: "NFL",
-    rank: 4,
+    rank: 5,
     brand: { abbr: "NE", primary: "#002244", secondary: "#C60C30" },
     ratings: { atmosphere: 8.45, stadium: 8.4, uniqueness: 8.5, gameplay: 8.45 },
     review: {
@@ -196,7 +213,7 @@ const STADIUMS = [
     name: "State Farm Stadium",
     team: "Arizona Cardinals",
     league: "NFL",
-    rank: 5,
+    rank: 6,
     brand: { abbr: "ARI", primary: "#97233F", secondary: "#FFB612" },
     ratings: { atmosphere: 8.3, stadium: 8.7, uniqueness: 8.4, gameplay: 8.35 },
     review: {
@@ -229,7 +246,7 @@ const STADIUMS = [
     name: "M&T Bank Stadium",
     team: "Baltimore Ravens",
     league: "NFL",
-    rank: 6,
+    rank: 7,
     brand: { abbr: "BAL", primary: "#241773", secondary: "#9E7C0C" },
     ratings: { atmosphere: 8.3, stadium: 8.3, uniqueness: 8.25, gameplay: 7.75 },
     review: {
@@ -260,7 +277,7 @@ const STADIUMS = [
     name: "MetLife Stadium",
     team: "New York Jets",
     league: "NFL",
-    rank: 7,
+    rank: 8,
     brand: { abbr: "NYJ", primary: "#125740", secondary: "#FFFFFF" },
     ratings: { atmosphere: 8.2, stadium: 7.8, uniqueness: 7.9, gameplay: 8.15 },
     review: {
@@ -293,7 +310,7 @@ const STADIUMS = [
     name: "MetLife Stadium",
     team: "New York Giants",
     league: "NFL",
-    rank: 8,
+    rank: 9,
     brand: { abbr: "NYG", primary: "#0B2265", secondary: "#A71930" },
     ratings: { atmosphere: 7.6, stadium: 7.7, uniqueness: 7.5, gameplay: 7.75 },
     review: {
@@ -325,25 +342,6 @@ const STADIUMS = [
      To score one of these: delete `status` and `visit`, then fill in
      `ratings`, `review` and `rank` exactly like the entries above. It moves
      into the ranking automatically. */
-  {
-    id: "empower-field",
-    name: "Empower Field at Mile High",
-    team: "Denver Broncos",
-    league: "NFL",
-    rank: null,
-    status: "unscored",
-    visit: "Sep 20, 2026 · vs Jaguars",
-    brand: { abbr: "DEN", primary: "#FB4F14", secondary: "#002244" },
-    ratings: null,
-    review: null,
-    info: { capacity: "76,125", opened: 2001, city: "Denver, CO", surface: "Natural grass", roof: "Open air" },
-    game: {
-      date: "Sep 20, 2026",
-      status: "Final",
-      away: { team: "Jaguars", score: 13 },
-      home: { team: "Broncos", score: 20 },
-    },
-  },
   {
     id: "lincoln-financial-field",
     name: "Lincoln Financial Field",

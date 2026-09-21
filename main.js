@@ -549,7 +549,9 @@ function renderStadiumPage() {
    has something in it, so a stadium with the ratings filled in but the words
    not written yet shows a short note instead of four empty headings. */
 function renderReview(review) {
-  if (!review) return "";
+  /* A venue scored before the words are written has no `review` at all, and
+     that still wants the note below rather than a blank column. */
+  review = review || {};
 
   const parts = [];
 

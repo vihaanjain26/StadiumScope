@@ -71,7 +71,20 @@ const STADIUMS = [
     rank: 1,
     brand: { abbr: "DEN", primary: "#FB4F14", secondary: "#002244" },
     ratings: { atmosphere: 9.45, stadium: 8.7, uniqueness: 8.4, gameplay: 8.45 },
-    review: null,
+    review: {
+      overview: "",
+      liked: [
+        "The fans were electric, with the decibels hitting 115 on almost every play. One of the loudest stadiums I've been to, if not the loudest",
+        "The fans were friendly, high fives after every touchdown, and they were never toxic toward the opposing fans",
+        "The Broncos make sure the fans are treated well, with a lot of giveaways like a rally towel and stickers",
+        "Plenty to do outside the stadium, like interactive games and photos with the iconic statues",
+      ],
+      disliked: [
+        "It isn't in the best area. There are no restaurants outside the parking lot and it's a slightly sketchy part of Denver",
+        "The food didn't taste good and it was expensive, 12 bucks for one cold slice of pizza",
+      ],
+      verdict: "",
+    },
     info: { capacity: "76,125", opened: 2001, city: "Denver, CO", surface: "Natural grass", roof: "Open air" },
     photo: {
       src: "assets/photos/empower-field.jpg",

@@ -465,7 +465,11 @@ const STADIUMS = [
         "The food tasted pretty good",
         "The concourse wasn't packed, and it wasn't tight or congested either",
       ],
-      disliked: [],
+      disliked: [
+        "The ballpark isn't in the best area of downtown Denver",
+        "The food is extremely overpriced. I paid 25 bucks for a pizza",
+        "Not a lot of variety at the concession stands, mostly just pizza, pretzels and beer",
+      ],
       verdict: "",
     },
     info: { capacity: "50,144", opened: 1995, city: "Denver, CO", surface: "Natural grass", roof: "Open air" },

@@ -65,9 +65,17 @@ function ratedIn(league) {
   return byLeague(league).filter(isRated);
 }
 
-/* Booked but not yet visited, soonest first (they carry no score). */
+/* Not scored yet: either booked, or been to but not written up. Ones I've
+   already been to come first, since those are the ones about to get ratings. */
 function upcomingIn(league) {
-  return byLeague(league).filter((s) => !isRated(s));
+  return byLeague(league)
+    .filter((s) => !isRated(s))
+    .sort((a, b) => Number(!!b.game) - Number(!!a.game));
+}
+
+/* Been there, no ratings typed in yet. The attended game is the giveaway. */
+function isUnscored(stadium) {
+  return !isRated(stadium) && !!stadium.game;
 }
 
 /* Every scored stadium, all leagues. */
@@ -121,8 +129,15 @@ function esc(str) {
 function gameLine(stadium) {
   const g = stadium.game;
   if (!g) return "";
+  return `${g.date} · ${finalLine(stadium)}`;
+}
+
+/* Just the result, no date — for spots that already show the date above it. */
+function finalLine(stadium) {
+  const g = stadium.game;
+  if (!g) return "";
   const ot = /OT/i.test(g.status || "") ? " (OT)" : "";
-  return `${g.date} · ${g.away.team} ${g.away.score} – ${g.home.team} ${g.home.score}${ot}`;
+  return `${g.away.team} ${g.away.score} – ${g.home.team} ${g.home.score}${ot}`;
 }
 
 /* ========================================================= 2. LOGO BADGE === */
@@ -222,7 +237,7 @@ function renderOverviewTable(container) {
           <th>League</th>
           <th>Sport</th>
           <th class="cell-num">Visited</th>
-          <th class="cell-num">Booked</th>
+          <th class="cell-num">Pending</th>
           <th class="cell-num">Avg score</th>
           <th>Highest rated</th>
           <th class="cell-num">Score</th>
@@ -643,7 +658,7 @@ function renderUpcomingStadiumPage(root, stadium) {
         ${makeLogo(stadium, "lg")}
         <div class="flex flex-wrap gap-2">
           <span class="badge">${stadium.league}</span>
-          <span class="badge badge-accent">Not yet visited</span>
+          <span class="badge badge-accent">${isUnscored(stadium) ? "Not scored yet" : "Not yet visited"}</span>
         </div>
       </div>
 
@@ -656,11 +671,15 @@ function renderUpcomingStadiumPage(root, stadium) {
     <div class="shell grid lg:grid-cols-[minmax(0,1fr)_380px] gap-14 lg:gap-20"
          style="padding-block:56px">
       <div>
-        <p class="eyebrow reveal">Booked for</p>
+        <p class="eyebrow reveal">${isUnscored(stadium) ? "I went to" : "Booked for"}</p>
         <p class="h2 mt-4 reveal">${esc(stadium.visit || "A date to be confirmed")}</p>
+        ${isUnscored(stadium)
+          ? `<p class="scoreline scoreline-lg mt-3 reveal">${esc(finalLine(stadium))}</p>`
+          : ""}
         <p class="prose mt-7 reveal" style="max-width:56ch">
-          No score yet — the four categories only get filled in after I've
-          actually been. Check back once the game has been played.
+          ${isUnscored(stadium)
+            ? "I've been, so the ratings and the write-up are coming. I score a venue once I've had a few days to think about it rather than straight off the drive home."
+            : "No score yet. The four categories only get filled in after I've actually been. Check back once the game has been played."}
         </p>
         <a class="btn mt-9 reveal" href="${stadium.league.toLowerCase()}.html">
           ← See the venues I have scored
@@ -686,7 +705,7 @@ function renderUpcoming(container, league) {
 
   container.innerHTML = list.map((s) => `
     <a class="tile reveal" href="stadium.html?id=${esc(s.id)}">
-      <span class="eyebrow">${esc(s.visit || "Date TBC")}</span>
+      <span class="eyebrow">${isUnscored(s) ? "Been, scoring it soon" : esc(s.visit || "Date TBC")}</span>
       <span class="flex items-center gap-3 mt-3">
         ${makeLogo(s, "sm")}
         <span class="h3">${esc(s.name)}</span>
@@ -694,6 +713,7 @@ function renderUpcoming(container, league) {
       <span class="block text-sm mt-2" style="color:var(--ink-soft)">
         ${esc(s.team)} · ${esc(s.info.city)}
       </span>
+      ${isUnscored(s) ? `<span class="scoreline mt-2">${esc(gameLine(s))}</span>` : ""}
     </a>`).join("");
 }
 
@@ -863,7 +883,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const stats = document.getElementById("league-stats");
     if (stats) {
       const s = leagueSummary(league);
-      const booked = s.upcoming ? ` · ${s.upcoming} booked` : "";
+      const booked = s.upcoming ? ` · ${s.upcoming} not scored yet` : "";
       stats.textContent =
         `${s.count} venues visited${booked} · average score ${fmtScore(s.average)} · top rated ${s.best.name}`;
     }
@@ -874,7 +894,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* Fill in any venue counts written into the page copy, so a line like
-     "14 venues scored · 3 booked" tracks the data instead of being typed. */
+     "14 venues scored · 3 not scored yet" tracks the data, not typing. */
   const ratedCount = RATED().length;
   document.querySelectorAll("[data-count-rated]").forEach((n) => {
     n.textContent = ratedCount;

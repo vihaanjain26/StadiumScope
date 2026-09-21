@@ -34,10 +34,12 @@
    brand     { abbr, primary, secondary } — used to draw the team logo badge
    logo      OPTIONAL path to a real logo image, e.g. "assets/logos/gb.svg".
              If present it is used instead of the generated badge.
-   status    OPTIONAL "upcoming" for a venue that's booked but not yet visited.
-             Such an entry has rank: null, ratings: null and review: null, and
-             is listed under "Up next" instead of in the ranking.
-   visit     OPTIONAL date line shown for an upcoming venue, e.g.
+   status    OPTIONAL "upcoming" for a venue that's booked but not yet visited,
+             or "unscored" for one I've been to but haven't rated yet. Either
+             way the entry has rank: null, ratings: null and review: null, and
+             sits under "Not scored yet" instead of in the ranking. Fill in the
+             ratings and it moves into the ranking on its own.
+   visit     OPTIONAL date line shown for a venue that isn't scored yet, e.g.
              "Oct 4, 2026 · vs Rams".
 
    ONE STADIUM PER GAMEDAY, NOT PER BUILDING
@@ -329,12 +331,18 @@ const STADIUMS = [
     team: "Denver Broncos",
     league: "NFL",
     rank: null,
-    status: "upcoming",
+    status: "unscored",
     visit: "Sep 20, 2026 · vs Jaguars",
     brand: { abbr: "DEN", primary: "#FB4F14", secondary: "#002244" },
     ratings: null,
     review: null,
     info: { capacity: "76,125", opened: 2001, city: "Denver, CO", surface: "Natural grass", roof: "Open air" },
+    game: {
+      date: "Sep 20, 2026",
+      status: "Final",
+      away: { team: "Jaguars", score: 13 },
+      home: { team: "Broncos", score: 20 },
+    },
   },
   {
     id: "lincoln-financial-field",

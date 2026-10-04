@@ -930,8 +930,13 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll("[data-count-rated]").forEach((n) => {
     n.textContent = ratedCount;
   });
+  const pendingCount = STADIUMS.length - ratedCount;
   document.querySelectorAll("[data-count-booked]").forEach((n) => {
-    n.textContent = STADIUMS.length - ratedCount;
+    n.textContent = pendingCount;
+  });
+  /* With everything scored there's no "0 not scored yet" to show. */
+  document.querySelectorAll("[data-pending-note]").forEach((n) => {
+    n.hidden = pendingCount === 0;
   });
 
   /* Stamp the year in the footer so it never goes stale. */

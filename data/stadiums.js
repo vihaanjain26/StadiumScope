@@ -264,7 +264,7 @@ const STADIUMS = [
     name: "M&T Bank Stadium",
     team: "Baltimore Ravens",
     league: "NFL",
-    rank: 7,
+    rank: 8,
     brand: { abbr: "BAL", primary: "#241773", secondary: "#9E7C0C" },
     ratings: { atmosphere: 8.3, stadium: 8.3, uniqueness: 8.25, gameplay: 7.75 },
     review: {
@@ -295,7 +295,7 @@ const STADIUMS = [
     name: "MetLife Stadium",
     team: "New York Jets",
     league: "NFL",
-    rank: 8,
+    rank: 9,
     brand: { abbr: "NYJ", primary: "#125740", secondary: "#FFFFFF" },
     ratings: { atmosphere: 8.2, stadium: 7.8, uniqueness: 7.9, gameplay: 8.15 },
     review: {
@@ -328,7 +328,7 @@ const STADIUMS = [
     name: "MetLife Stadium",
     team: "New York Giants",
     league: "NFL",
-    rank: 9,
+    rank: 10,
     brand: { abbr: "NYG", primary: "#0B2265", secondary: "#A71930" },
     ratings: { atmosphere: 7.6, stadium: 7.7, uniqueness: 7.5, gameplay: 7.75 },
     review: {
@@ -355,21 +355,14 @@ const STADIUMS = [
              away: { team: "Rams", score: 38 },
              home: { team: "Giants", score: 11 } },
   },
-
-  /* --- Booked, not yet visited. No ratings until I've actually been. -------
-     To score one of these: delete `status` and `visit`, then fill in
-     `ratings`, `review` and `rank` exactly like the entries above. It moves
-     into the ranking automatically. */
   {
     id: "lincoln-financial-field",
     name: "Lincoln Financial Field",
     team: "Philadelphia Eagles",
     league: "NFL",
-    rank: null,
-    status: "unscored",
-    visit: "Oct 4, 2026 · vs Rams",
+    rank: 7,
     brand: { abbr: "PHI", primary: "#004C54", secondary: "#A5ACAF" },
-    ratings: null,
+    ratings: { atmosphere: 8.1, stadium: 8.35, uniqueness: 8.2, gameplay: 8.25 },
     review: {
       overview: "",
       liked: [
@@ -382,7 +375,8 @@ const STADIUMS = [
         "Way too much traffic getting in and out. It took an hour, and getting out was the worst part",
         "Way too many lines in the concourse, and the concourse itself is extremely tight",
       ],
-      verdict: "",
+      verdict:
+        "I'd suggest not going to the Linc, because of how harsh and toxic the fans are. If you do go, I wouldn't bring little kids, because of the language.",
     },
     info: { capacity: "69,596", opened: 2003, city: "Philadelphia, PA", surface: "Hybrid grass", roof: "Open air" },
     game: {

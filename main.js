@@ -78,6 +78,15 @@ function isUnscored(stadium) {
   return !isRated(stadium) && !!stadium.game;
 }
 
+/* Is there any written review here? Lets a venue show its write-up before the
+   ratings are in, instead of hiding the words until the numbers arrive. */
+function hasReviewText(review) {
+  if (!review) return false;
+  return !!review.overview || !!review.verdict ||
+    !!(review.liked && review.liked.length) ||
+    !!(review.disliked && review.disliked.length);
+}
+
 /* Every scored stadium, all leagues. */
 const RATED = () => STADIUMS.filter(isRated);
 
@@ -679,10 +688,17 @@ function renderUpcomingStadiumPage(root, stadium) {
           ? `<p class="scoreline scoreline-lg mt-3 reveal">${esc(finalLine(stadium))}</p>`
           : ""}
         <p class="prose mt-7 reveal" style="max-width:56ch">
-          ${isUnscored(stadium)
-            ? "I've been, so the ratings and the write-up are coming. I score a venue once I've had a few days to think about it rather than straight off the drive home."
-            : "No score yet. The four categories only get filled in after I've actually been. Check back once the game has been played."}
+          ${!isUnscored(stadium)
+            ? "No score yet. The four categories only get filled in after I've actually been. Check back once the game has been played."
+            : hasReviewText(stadium.review)
+            ? "The write-up is below. The four category scores still have to go in, so this one isn't in the ranking yet."
+            : "I've been, so the ratings and the write-up are coming. I score a venue once I've had a few days to think about it rather than straight off the drive home."}
         </p>
+
+        ${hasReviewText(stadium.review)
+          ? `<div class="mt-14">${renderReview(stadium.review)}</div>`
+          : ""}
+
         <a class="btn mt-9 reveal" href="${stadium.league.toLowerCase()}.html">
           ← See the venues I have scored
         </a>

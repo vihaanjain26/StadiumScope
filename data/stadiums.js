@@ -370,7 +370,20 @@ const STADIUMS = [
     visit: "Oct 4, 2026 · vs Rams",
     brand: { abbr: "PHI", primary: "#004C54", secondary: "#A5ACAF" },
     ratings: null,
-    review: null,
+    review: {
+      overview: "",
+      liked: [
+        "The crowd was loud and passionate the whole game and made it intense for the opposing team",
+        "Not many bad views anywhere in the stadium",
+        "The food tasted pretty good and came out warm, at a reasonable price",
+      ],
+      disliked: [
+        "Some fans were salty and rude to the opposing fans, and they booed way too many times during the game",
+        "Way too much traffic getting in and out. It took an hour, and getting out was the worst part",
+        "Way too many lines in the concourse, and the concourse itself is extremely tight",
+      ],
+      verdict: "",
+    },
     info: { capacity: "69,596", opened: 2003, city: "Philadelphia, PA", surface: "Hybrid grass", roof: "Open air" },
     game: {
       date: "Oct 4, 2026",

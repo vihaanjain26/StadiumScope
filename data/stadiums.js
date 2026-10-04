@@ -366,12 +366,18 @@ const STADIUMS = [
     team: "Philadelphia Eagles",
     league: "NFL",
     rank: null,
-    status: "upcoming",
+    status: "unscored",
     visit: "Oct 4, 2026 · vs Rams",
     brand: { abbr: "PHI", primary: "#004C54", secondary: "#A5ACAF" },
     ratings: null,
     review: null,
     info: { capacity: "69,596", opened: 2003, city: "Philadelphia, PA", surface: "Hybrid grass", roof: "Open air" },
+    game: {
+      date: "Oct 4, 2026",
+      status: "Final",
+      away: { team: "Rams", score: 24 },
+      home: { team: "Eagles", score: 20 },
+    },
   },
   /* ------------------------------------------------------------------ MLB --
      Real ratings from the "going to all MLB stadiums" project. Same rules as

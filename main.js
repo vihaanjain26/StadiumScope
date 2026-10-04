@@ -698,11 +698,24 @@ function renderUpcomingStadiumPage(root, stadium) {
 /* ---- 3g. "Up next" strip on a league page ------------------------------- */
 function renderUpcoming(container, league) {
   const list = upcomingIn(league);
-  /* No booked venues in this league? Hide the whole section. */
+  /* Nothing waiting in this league? Hide the whole section. */
   const section = container && container.closest("[data-upcoming-section]");
   if (!container || !list.length) {
     if (section) section.hidden = true;
     return;
+  }
+
+  /* The blurb depends on what's actually sitting here: games I've been to,
+     tickets I haven't used yet, or a mix of the two. */
+  const been = list.filter(isUnscored).length;
+  const blurb = section && section.querySelector("[data-upcoming-blurb]");
+  if (blurb) {
+    blurb.textContent =
+      been === list.length
+        ? "Been to these, no score on them yet. Ratings go in once I've written them up."
+        : been === 0
+        ? "Tickets bought, not used yet. Ratings go in after the game."
+        : "Some I've already been to, some are still just tickets. Ratings go in once I've written them up.";
   }
 
   container.innerHTML = list.map((s) => `

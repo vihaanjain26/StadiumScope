@@ -379,6 +379,10 @@ const STADIUMS = [
         "I'd suggest not going to the Linc, because of how harsh and toxic the fans are. If you do go, I wouldn't bring little kids, because of the language.",
     },
     info: { capacity: "69,596", opened: 2003, city: "Philadelphia, PA", surface: "Hybrid grass", roof: "Open air" },
+    photo: {
+      src: "assets/photos/lincoln-financial-field.jpg",
+      caption: "(photo I took in the rain at Rams vs Eagles)",
+    },
     game: {
       date: "Oct 4, 2026",
       status: "Final",

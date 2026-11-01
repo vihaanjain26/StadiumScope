@@ -562,43 +562,11 @@ const STADIUMS = [
              home: { team: "Knicks", score: 94 } },
   },
   {
-    id: "barclays-center",
-    name: "Barclays Center",
-    team: "Brooklyn Nets",
-    league: "NBA",
-    rank: 2,
-    brand: { abbr: "BKN", primary: "#000000", secondary: "#FFFFFF" },
-    ratings: { atmosphere: 7.6, stadium: 8.8, uniqueness: 8.5, gameplay: 7.8 },
-    review: {
-      overview: "",
-      liked: [
-        "A big, beautiful arena from the outside and the inside",
-        "Plenty to do in the arena, with a lot of restaurants",
-        "Connected to a subway station right outside, so getting there by train is easy",
-      ],
-      disliked: [
-        "The fans were never into the game, which is understandable given the team",
-        "About 70% full for a Friday night, and a good chunk of that was away fans",
-        "Outside the arena felt a little sketchy — the neighbourhood is questionable",
-      ],
-      verdict:
-        "I wouldn't come to Barclays Center until the Nets are worth watching. The atmosphere was basically non-existent because the team gave the crowd nothing to react to, and that wastes the arena — the building itself deserves better.",
-    },
-    info: { capacity: "17,732", opened: 2012, city: "Brooklyn, NY", surface: "Hardwood", roof: "Indoor" },
-    photo: {
-      src: "assets/photos/barclays-center.jpg",
-      caption: "(photo I took at Clippers vs Nets)",
-    },
-    game: { date: "Jan 9, 2026", status: "Final",
-             away: { team: "Clippers", score: 121 },
-             home: { team: "Nets", score: 105 } },
-  },
-  {
     id: "footprint-center",
     name: "Footprint Center",
     team: "Phoenix Suns",
     league: "NBA",
-    rank: 3,
+    rank: 2,
     brand: { abbr: "PHX", primary: "#1D1160", secondary: "#E56020" },
     ratings: { atmosphere: 7.7, stadium: 8.4, uniqueness: 8.1, gameplay: 8.25 },
     review: {
@@ -625,6 +593,23 @@ const STADIUMS = [
     game: { date: "Nov 10, 2024", status: "Final/OT",
              away: { team: "Kings", score: 127 },
              home: { team: "Suns", score: 118 } },
+  },
+  /* --- Booked, not yet visited. No ratings until I've actually been. -------
+     To score one of these: delete `status` and `visit`, then fill in
+     `ratings`, `review` and `rank` exactly like the entries above. It moves
+     into the ranking automatically. */
+  {
+    id: "barclays-center",
+    name: "Barclays Center",
+    team: "Brooklyn Nets",
+    league: "NBA",
+    rank: null,
+    status: "upcoming",
+    visit: "Nov 4, 2026 · vs Hornets",
+    brand: { abbr: "BKN", primary: "#000000", secondary: "#FFFFFF" },
+    ratings: null,
+    review: null,
+    info: { capacity: "17,732", opened: 2012, city: "Brooklyn, NY", surface: "Hardwood", roof: "Indoor" },
   },
 ];
 
